@@ -31,7 +31,7 @@ const Coins = (props) =>{
         <Stack>
           <div style={{ fontSize: FontSizes.size68, fontWeight: FontWeights.regular }}>List of coins</div>
           <Stack horizontal wrap styles={stackStyles} tokens={numericalSpacingStackTokens}>            
-                {props.coins.map(c =><span key={c.id} style={itemStyles}> {c.name} </span>)};
+                {props.coins.map(c =><span key={c.id} style={itemStyles}> {c.name} </span>)}
           </Stack>
         </Stack>
 
