@@ -1,5 +1,6 @@
 import { getTheme, DefaultPalette,  Stack, FontSizes, FontWeights  } from "@fluentui/react";
 import * as React from "react";
+import { NavLink } from "react-router-dom";
 
 
 const Coins = (props) =>{
@@ -7,7 +8,7 @@ const Coins = (props) =>{
 
     const itemStyles = {
         alignItems: 'center',
-        background: DefaultPalette.themePrimary,
+        background: DefaultPalette.yellowDark,
         color: DefaultPalette.white,
         display: 'flex',
         height: 50,
@@ -31,15 +32,12 @@ const Coins = (props) =>{
         <Stack>
           <div style={{ fontSize: FontSizes.size68, fontWeight: FontWeights.regular }}>List of coins</div>
           <Stack horizontal wrap styles={stackStyles} tokens={numericalSpacingStackTokens}>            
-                {props.coins.map(c =><span key={c.id} style={itemStyles}> {c.name} </span>)}
+                {props.coins.map(c =><span key={c.id} style={itemStyles}><NavLink to={'/coin/'+c.id}> {c.name}</NavLink> </span>)}
           </Stack>
-        </Stack>
-
-      
-
-
+        </Stack>    
     )
 }
+
 
 export default Coins;
 

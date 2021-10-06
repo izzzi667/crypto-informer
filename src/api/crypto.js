@@ -8,7 +8,11 @@ export const cryptoApi =
 {
     getCoinsList ()
     {
-        return  instancse.get('coins/list');
+        return  instancse.get('coins/list');        
+    },
+    getCoinInformation (coinId)
+    {
+        return  instancse.get('coins/'+coinId);        
     }
 }
 
