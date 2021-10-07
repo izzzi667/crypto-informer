@@ -4,9 +4,12 @@ import ReactDOM from 'react-dom';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
+import { initializeIcons } from '@fluentui/font-icons-mdl2';
 
 
 
+
+initializeIcons(); //Init fluent UI icons
 
 ReactDOM.render(
 <React.StrictMode>

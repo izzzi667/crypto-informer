@@ -9,6 +9,11 @@ const Coin = (props) =>
         return null
     }
 
+    for(let currnecy in props.coin.market_data.current_price)
+    {
+        console.log(currnecy +' '+props.coin.market_data.current_price[currnecy]);
+    }
+
     return(
 
 <div class="ms-Grid" dir="ltr">
@@ -26,7 +31,18 @@ const Coin = (props) =>
         <div class='ms-fontSize-14'>Coin_id: {props.coin.id}, symbol: {props.coin.symbol} </div>
         <div class='ms-fontSize-14'><hr />Description:</div>
         <div class='ms-fontSize-14'>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</div>
-
+        <div class='ms-fontSize-14'>
+            Curreent coin price
+            <table>
+                <tr><th>Currency</th><th>Value</th><th>ATH (All Time High)</th></tr>
+                {
+                    Object.keys(props.coin.market_data.current_price).map(currency =>
+                        (
+                            <tr><td>{currency}</td><td>{props.coin.market_data.current_price[currency]}</td><td>{props.coin.market_data.ath[currency]}</td></tr>
+                        ))
+                }
+            </table>
+        </div>
     
     </div>
 
