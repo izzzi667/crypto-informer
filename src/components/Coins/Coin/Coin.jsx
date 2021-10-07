@@ -1,24 +1,46 @@
+import { DetailsList, DetailsListLayoutMode } from "@fluentui/react";
 import React  from "react";
 
 const Coin = (props) => 
 {    
-    debugger;
-
     if(typeof props.coin.asset_platform_id == "undefined")
     {
         return null
     }
 
+    let priceData=[];
+    for (let currency in props.coin.market_data.current_price)
+    {
+        let athpercent;
+        priceData.push({
+            key: currency, 
+            currency, 
+            value: props.coin.market_data.current_price[currency],
+            ath: props.coin.market_data.ath[currency],
+            atl: props.coin.market_data.atl[currency]
+        })
+    }
+
+
+
     for(let currnecy in props.coin.market_data.current_price)
     {
         console.log(currnecy +' '+props.coin.market_data.current_price[currnecy]);
     }
+//ATH (All Time High)
+    let columns = [
+        { key: 'column1', name: 'Currency', fieldName: 'currency', minWidth: 100, maxWidth: 200, isResizable: true },
+        { key: 'column2', name: 'Value', fieldName: 'value', minWidth: 100, maxWidth: 200, isResizable: true },
+        { key: 'column3', name: 'ATH (All Time High)', fieldName: 'ath', minWidth: 100, maxWidth: 200, isResizable: true },
+        { key: 'column4', name: 'ATH (All Time Low)', fieldName: 'atl', minWidth: 100, maxWidth: 200, isResizable: true },
+      ];
 
     return(
 
 <div class="ms-Grid" dir="ltr">
   <div class="ms-Grid-row">
     <div class="ms-Grid-col ms-sm3 ms-md3 ms-lg3">
+        <br />
         <img src = {props.coin.image.large} />
        
         <div class='ms-fontSize-14'>
@@ -33,15 +55,15 @@ const Coin = (props) =>
         <div class='ms-fontSize-14'>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</div>
         <div class='ms-fontSize-14'>
             Curreent coin price
-            <table>
-                <tr><th>Currency</th><th>Value</th><th>ATH (All Time High)</th></tr>
-                {
-                    Object.keys(props.coin.market_data.current_price).map(currency =>
-                        (
-                            <tr><td>{currency}</td><td>{props.coin.market_data.current_price[currency]}</td><td>{props.coin.market_data.ath[currency]}</td></tr>
-                        ))
-                }
-            </table>
+
+
+            <DetailsList
+                items={priceData}
+                columns={columns}
+                setKey="set"
+                layoutMode={DetailsListLayoutMode.justified}
+
+            />
         </div>
     
     </div>
