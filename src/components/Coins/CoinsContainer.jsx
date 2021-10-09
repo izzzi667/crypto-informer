@@ -25,7 +25,6 @@ let mapStateToProps = (state) =>(
     {
     coins: state.crypto.coins,
     isLoading: state.crypto.isLoading,
-    state: state
 });
 
 

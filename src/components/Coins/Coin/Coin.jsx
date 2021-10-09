@@ -1,9 +1,9 @@
 import { DetailsList, DetailsListLayoutMode } from "@fluentui/react";
 import React  from "react";
+import { NavLink } from "react-router-dom";
 
 const Coin = (props) => 
 {    
-    debugger;
 
     let priceData=[];
     for (let currency in props.coin.market_data.current_price)
@@ -23,7 +23,7 @@ const Coin = (props) =>
     {
         console.log(currnecy +' '+props.coin.market_data.current_price[currnecy]);
     }
-//ATH (All Time High)
+
     let columns = [
         { key: 'column1', name: 'Currency', fieldName: 'currency', minWidth: 100, maxWidth: 200, isResizable: true },
         { key: 'column2', name: 'Value', fieldName: 'value', minWidth: 100, maxWidth: 200, isResizable: true },
@@ -42,6 +42,7 @@ const Coin = (props) =>
         <div class='ms-fontSize-14'>
             Genesis date: {props.coin.genesis_date}
         </div>
+        <NavLink to={'/history/'+props.coin.id}>History data</NavLink>        
         
     </div>
     <div class="ms-Grid-col ms-sm9 ms-md9 ms-lg9">
