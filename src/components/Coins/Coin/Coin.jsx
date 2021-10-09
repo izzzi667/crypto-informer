@@ -3,15 +3,11 @@ import React  from "react";
 
 const Coin = (props) => 
 {    
-    if(typeof props.coin.asset_platform_id == "undefined")
-    {
-        return null
-    }
+    debugger;
 
     let priceData=[];
     for (let currency in props.coin.market_data.current_price)
     {
-        let athpercent;
         priceData.push({
             key: currency, 
             currency, 

@@ -9,7 +9,6 @@ import Coins from "./Coins";
 class CoinsContainer extends React.Component
 {
     componentDidMount(){
-        debugger;
         this.props.getCoins();
     }
     render()
