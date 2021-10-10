@@ -1,10 +1,11 @@
-import { DetailsList, DetailsListLayoutMode } from "@fluentui/react";
+import {FontWeights, FontSizes, getTheme, DetailsList, DetailsListLayoutMode, Stack, DefaultPalette} from "@fluentui/react";
 import React  from "react";
 import { NavLink } from "react-router-dom";
 
 const Coin = (props) => 
 {    
-
+    const theme = getTheme();
+    //TODO: перенести в селекторы
     let priceData=[];
     for (let currency in props.coin.market_data.current_price)
     {
@@ -18,12 +19,6 @@ const Coin = (props) =>
     }
 
 
-
-    for(let currnecy in props.coin.market_data.current_price)
-    {
-        console.log(currnecy +' '+props.coin.market_data.current_price[currnecy]);
-    }
-
     let columns = [
         { key: 'column1', name: 'Currency', fieldName: 'currency', minWidth: 100, maxWidth: 200, isResizable: true },
         { key: 'column2', name: 'Value', fieldName: 'value', minWidth: 100, maxWidth: 200, isResizable: true },
@@ -31,26 +26,32 @@ const Coin = (props) =>
         { key: 'column4', name: 'ATH (All Time Low)', fieldName: 'atl', minWidth: 100, maxWidth: 200, isResizable: true },
       ];
 
+    let stackStyle = {
+        padding: 20,
+        background: DefaultPalette.themeLighter,
+        color: DefaultPalette.blackTranslucent40,
+       
+    }  
+
     return(
 
-<div class="ms-Grid" dir="ltr">
-  <div class="ms-Grid-row">
-    <div class="ms-Grid-col ms-sm3 ms-md3 ms-lg3">
+<Stack horizontal>
+    <Stack verticalAlign="start" style={stackStyle}>
         <br />
         <img src = {props.coin.image.large} />
        
-        <div class='ms-fontSize-14'>
+        <div className='ms-fontSize-14'>
             Genesis date: {props.coin.genesis_date}
         </div>
         <NavLink to={'/history/'+props.coin.id}>History data</NavLink>        
         
-    </div>
-    <div class="ms-Grid-col ms-sm9 ms-md9 ms-lg9">
-        <div class='ms-fontSize-68'>{props.coin.name}</div>
-        <div class='ms-fontSize-14'>Coin_id: {props.coin.id}, symbol: {props.coin.symbol} </div>
-        <div class='ms-fontSize-14'><hr />Description:</div>
-        <div class='ms-fontSize-14'>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</div>
-        <div class='ms-fontSize-14'>
+    </Stack>
+    <Stack verticalAlign="start" style={{padding: 30}}>
+        <div style={{ fontSize: FontSizes.size68, fontWeight: FontWeights.regular }}>{props.coin.name}</div>
+        <div className='ms-fontSize-14'>Coin_id: {props.coin.id}, symbol: {props.coin.symbol} </div>
+        <div className='ms-fontSize-14'><hr />Description:</div>
+        <div className='ms-fontSize-14'>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</div>
+        <div className='ms-fontSize-14'>
             Curreent coin price
 
 
@@ -61,12 +62,10 @@ const Coin = (props) =>
                 layoutMode={DetailsListLayoutMode.justified}
 
             />
-        </div>
-    
-    </div>
+        </div>    
+    </Stack>
 
-  </div>
-</div>
+ </Stack>
 
 
 
