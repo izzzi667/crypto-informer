@@ -7,7 +7,8 @@ const COIN_LOADING_SWITH = 'COIN_LOADING_SWITH';
 let inintialState= {
     coin: [],
     coinHistoryData: [],
-    isLoading: true
+    isLoading: true,
+    numberOfDaysInHistory: 30
 };
 
 export const coinInfoReducer = (state= inintialState, action) =>
@@ -57,5 +58,7 @@ export const getCoinHistory = (coinId, vs_currency, days) =>
         );
     }
 }
+
+
 
 export default coinInfoReducer;
