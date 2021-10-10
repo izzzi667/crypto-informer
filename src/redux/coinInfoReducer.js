@@ -3,12 +3,15 @@ import { cryptoApi } from "../api/crypto";
 const GET_COIN_INFO = 'GET_COIN_INFO';
 const GET_COIN_HISTORY_DATA = 'GET_COIN_HISTORY_DATA';
 const COIN_LOADING_SWITH = 'COIN_LOADING_SWITH';
+const SET_NUMBER_OF_DAYS = 'SET_NUMBER_OF_DAYS';
+const SET_HISTORY_CURRENCY='SET_HISTORY_CURRENCY';
 
 let inintialState= {
     coin: [],
     coinHistoryData: [],
     isLoading: true,
-    numberOfDaysInHistory: 30
+    numberOfDaysInHistory: 30,
+    historyCurrency: 'usd'
 };
 
 export const coinInfoReducer = (state= inintialState, action) =>
@@ -21,14 +24,21 @@ export const coinInfoReducer = (state= inintialState, action) =>
             return { ...state, isLoading: action.isLoading}
         case GET_COIN_HISTORY_DATA:
             return {...state, coinHistoryData: action.coinHistoryData}
+        case SET_NUMBER_OF_DAYS:
+            return {...state, numberOfDaysInHistory: action.numberOfDaysInHistory}
+        case SET_HISTORY_CURRENCY:
+            return {...state, historyCurrency: action.historyCurrency}
         default:
             return state;
     }
 }
 
-export const setCoinInfo = (coin) => ({type: GET_COIN_INFO, coin})
-export const setCoinHistoryData = (coinHistoryData) => ({type: GET_COIN_HISTORY_DATA, coinHistoryData})
-export const switchLoadingCoins = (isLoading) =>({type: COIN_LOADING_SWITH, isLoading})
+export const setCoinInfo = (coin) => ({type: GET_COIN_INFO, coin});
+export const setCoinHistoryData = (coinHistoryData) => ({type: GET_COIN_HISTORY_DATA, coinHistoryData});
+export const switchLoadingCoins = (isLoading) =>({type: COIN_LOADING_SWITH, isLoading});
+export const setHistoryCurrency = (historyCurrency) =>({type: SET_HISTORY_CURRENCY, historyCurrency});
+export const setNumbersOfDays = (numberOfDaysInHistory) =>({type: SET_NUMBER_OF_DAYS, numberOfDaysInHistory});
+
 
 
 export const getCoin = (coinId) =>
