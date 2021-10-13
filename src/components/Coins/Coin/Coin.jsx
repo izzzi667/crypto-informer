@@ -1,4 +1,4 @@
-import {FontWeights, FontSizes, getTheme, DetailsList, DetailsListLayoutMode, Stack, DefaultPalette} from "@fluentui/react";
+import {FontWeights, FontSizes, getTheme, Stack, DefaultPalette, Icon} from "@fluentui/react";
 import React  from "react";
 import { NavLink } from "react-router-dom";
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
@@ -35,7 +35,7 @@ const Coin = (props) =>
         color: DefaultPalette.blackTranslucent40,
        
     } 
-    debugger; 
+
 
     return(
 
@@ -44,8 +44,36 @@ const Coin = (props) =>
         <br />
         <img src = {props.coin.image.large} />
        
-        <div className='ms-fontSize-14'>
-            Genesis date: {props.coin.genesis_date}
+        <div className='ms-fontSize-18'>
+            <div className='ms-fontSize-24'>General:</div>
+            <ul>
+                {props.coin.genesis_date!=null && <li>Genesis date: {props.coin.genesis_date}</li> }
+                <li>Coin_id: {props.coin.id}</li>
+                <li>Symbol: {props.coin.symbol} </li>
+                <li>Algorithm: {props.coin.hashing_algorithm} </li>
+            </ul>
+        </div>
+
+        <div className='ms-fontSize-18'>
+            <div className='ms-fontSize-24'>Links:</div>
+            <ul>
+                {props.coin.links.homepage[0]!='' && <li><Icon iconName="Website" /> <a href={props.coin.links.homepage[0]}>Homepage</a></li> }
+                {props.coin.links.homepage[1]!='' && <li><Icon iconName="Website" /> <a href={props.coin.links.homepage[1]}>Homepage 2</a></li> }
+                {props.coin.links.homepage[2]!='' && <li><Icon iconName="Website" /> <a href={props.coin.links.homepage[2]}>Homepage 3</a></li> }
+                {props.coin.links.blockchain_site[0]!='' && <li><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[0]}>Blockchain site 1</a></li> }
+                {props.coin.links.blockchain_site[1]!='' && <li><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[1]}>Blockchain site 2</a></li> }
+                {props.coin.links.blockchain_site[2]!='' && <li><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[2]}>Blockchain site 3</a></li> }
+                {props.coin.links.blockchain_site[3]!='' && <li><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[3]}>Blockchain site 4</a></li> }
+                {props.coin.links.blockchain_site[4]!='' && <li><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[4]}>Blockchain site 5</a></li> }
+                {props.coin.links.official_forum_url[0]!='' && <li><Icon iconName="TextBox" /> <a href={props.coin.links.official_forum_url[0]}>Official Forum</a></li> }
+                {props.coin.links.official_forum_url[1]!='' && <li><Icon iconName="TextBox" /> <a href={props.coin.links.official_forum_url[1]}>Official Forum 2</a></li> }
+                {props.coin.links.official_forum_url[2]!='' && <li><Icon iconName="TextBox" /> <a href={props.coin.links.official_forum_url[2]}>Official Forum 3</a></li> }
+                {props.coin.links.chat_url[0]!='' && <li><Icon iconName="Comment" /> <a href={props.coin.links.chat_url[0]}>Coin's chat</a></li> }
+                {props.coin.links.chat_url[1]!='' && <li><Icon iconName="Comment" /> <a href={props.coin.links.chat_url[1]}>Coin's chat 2</a></li> }
+                {props.coin.links.chat_url[2]!='' && <li><Icon iconName="Comment" /> <a href={props.coin.links.chat_url[2]}>Coin's chat 3</a></li> }
+                {props.coin.links.subreddit_url!=null && <li><Icon iconName="Group" /> <a href={props.coin.links.subreddit_url}>Reddit</a></li> }
+                {props.coin.links.repos_url.github[0]!=null && <li><Icon iconName="GitGraph" /> <a href={props.coin.links.repos_url.github[0]}>Github</a></li> }
+            </ul>
         </div>
         <NavLink to={'/history/'+props.coin.id}>History data</NavLink>    
 
@@ -53,12 +81,11 @@ const Coin = (props) =>
     </Stack>
     <Stack verticalAlign="start" style={{padding: 30}}>
         <div style={{ fontSize: FontSizes.size68, fontWeight: FontWeights.regular }}>{props.coin.name}</div>
-        <div className='ms-fontSize-14'>Coin_id: {props.coin.id}, symbol: {props.coin.symbol} </div>
-        <div className='ms-fontSize-14'><hr />Description:</div>
-        <div className='ms-fontSize-14'>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</div>
-        <div className='ms-fontSize-14'>
+        <div className='ms-fontSize-16'>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</div>
+        <br />
+        <div className='ms-fontSize-28'>
             Current coin price
-                <div className="ag-theme-alpine" style={{height: 2700, width: 900}}>
+                <div className="ag-theme-alpine" style={{height: 700, width: 900}}>
                     <AgGridReact
                     rowData={priceData}>
                     <AgGridColumn field="currency" headerName="Currency" sortable={ true } filter={ true }></AgGridColumn>

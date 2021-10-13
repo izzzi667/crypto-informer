@@ -30,7 +30,7 @@ const Coins = (props) =>{
 
     return(
         <Stack>
-          <div style={{ fontSize: FontSizes.size68, fontWeight: FontWeights.regular }}>List of coins</div>
+          <div style={{ fontSize: FontSizes.size68, fontWeight: FontWeights.regular }}>List of coins (total: {props.coins.length})</div>
           <Stack horizontal wrap styles={stackStyles} tokens={numericalSpacingStackTokens}>            
                 {props.coins.map(c =><span key={c.id} style={itemStyles}><NavLink to={'/coin/'+c.id}> {c.name}</NavLink> </span>)}
           </Stack>
