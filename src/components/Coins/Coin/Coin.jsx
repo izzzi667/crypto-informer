@@ -1,6 +1,9 @@
 import {FontWeights, FontSizes, getTheme, DetailsList, DetailsListLayoutMode, Stack, DefaultPalette} from "@fluentui/react";
 import React  from "react";
 import { NavLink } from "react-router-dom";
+import {AgGridColumn, AgGridReact} from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 const Coin = (props) => 
 {    
@@ -9,8 +12,7 @@ const Coin = (props) =>
     let priceData=[];
     for (let currency in props.coin.market_data.current_price)
     {
-        priceData.push({
-            key: currency, 
+        priceData.push({            
             currency, 
             value: props.coin.market_data.current_price[currency],
             ath: props.coin.market_data.ath[currency],
@@ -26,12 +28,14 @@ const Coin = (props) =>
         { key: 'column4', name: 'ATH (All Time Low)', fieldName: 'atl', minWidth: 100, maxWidth: 200, isResizable: true },
       ];
 
+
     let stackStyle = {
         padding: 20,
         background: DefaultPalette.themeLighter,
         color: DefaultPalette.blackTranslucent40,
        
-    }  
+    } 
+    debugger; 
 
     return(
 
@@ -43,7 +47,8 @@ const Coin = (props) =>
         <div className='ms-fontSize-14'>
             Genesis date: {props.coin.genesis_date}
         </div>
-        <NavLink to={'/history/'+props.coin.id}>History data</NavLink>        
+        <NavLink to={'/history/'+props.coin.id}>History data</NavLink>    
+
         
     </Stack>
     <Stack verticalAlign="start" style={{padding: 30}}>
@@ -52,16 +57,18 @@ const Coin = (props) =>
         <div className='ms-fontSize-14'><hr />Description:</div>
         <div className='ms-fontSize-14'>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</div>
         <div className='ms-fontSize-14'>
-            Curreent coin price
+            Current coin price
+                <div className="ag-theme-alpine" style={{height: 2700, width: 900}}>
+                    <AgGridReact
+                    rowData={priceData}>
+                    <AgGridColumn field="currency" headerName="Currency" sortable={ true } filter={ true }></AgGridColumn>
+                    <AgGridColumn field="value" headerName="Value" sortable={ true } filter={ true }></AgGridColumn>
+                    <AgGridColumn field="ath" headerName="ATH (All Time High)" sortable={ true } filter={ true }></AgGridColumn>
+                    <AgGridColumn field="atl"  headerName="ATH (All Time Low)" sortable={ true } filter={ true }></AgGridColumn>
+                </AgGridReact>
+            </div>
 
 
-            <DetailsList
-                items={priceData}
-                columns={columns}
-                setKey="set"
-                layoutMode={DetailsListLayoutMode.justified}
-
-            />
         </div>    
     </Stack>
 

@@ -48,7 +48,8 @@ export const getCoin = (coinId) =>
         dispatch(switchLoadingCoins(true));
         cryptoApi.getCoinInformation(coinId).then(
             data=>{
-                dispatch(setCoinInfo(data.data));                      
+                console.log(data);
+                dispatch(setCoinInfo(data.data));     
                 dispatch(switchLoadingCoins(false));          
             }
         );

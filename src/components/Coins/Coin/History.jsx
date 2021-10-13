@@ -21,11 +21,11 @@ export const History =(props) =>
 
 
     return <Stack>
-        <Stack horizontal wrap={true}>
-            <Stack style={{width: 400, minWidth:400}}>
+        <Stack horizontal wrap={true} style={{padding: 5}}>
+            <Stack style={{width: 400, minWidth:400}} verticalAlign="start">
                 <Slider label="Number of days" min={1} max={90} step={1} defaultValue={props.numberOfDaysInHistory} showValue onChanged={props.onDaysUpdate} styles={{width:300}}/>
             </Stack>
-            <Stack>
+            <Stack verticalAlign="start">
                 <Dropdown
                     label="Graph currency"
                     defaultSelectedKey={props.historyCurrency}
