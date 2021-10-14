@@ -16,21 +16,17 @@ const Coin = (props) =>
             currency, 
             value: props.coin.market_data.current_price[currency],
             ath: props.coin.market_data.ath[currency],
+            athPercent: props.coin.market_data.ath_change_percentage[currency],
+            atlPercent: props.coin.market_data.atl_change_percentage[currency],
+            atlDate: props.coin.market_data.atl_date[currency],
             atl: props.coin.market_data.atl[currency]
         })
+        
     }
 
 
-    let columns = [
-        { key: 'column1', name: 'Currency', fieldName: 'currency', minWidth: 100, maxWidth: 200, isResizable: true },
-        { key: 'column2', name: 'Value', fieldName: 'value', minWidth: 100, maxWidth: 200, isResizable: true },
-        { key: 'column3', name: 'ATH (All Time High)', fieldName: 'ath', minWidth: 100, maxWidth: 200, isResizable: true },
-        { key: 'column4', name: 'ATH (All Time Low)', fieldName: 'atl', minWidth: 100, maxWidth: 200, isResizable: true },
-      ];
-
-
     let stackStyle = {
-        padding: 20,
+        padding: 10,
         background: DefaultPalette.themeLighter,
         color: DefaultPalette.blackTranslucent40,
        
@@ -53,7 +49,18 @@ const Coin = (props) =>
                 <li>Algorithm: {props.coin.hashing_algorithm} </li>
             </ul>
         </div>
-
+        <div className='ms-fontSize-18'>
+            <div className='ms-fontSize-24'>Financial performance:</div>
+            <ul>                
+                <li><NavLink to={'/history/'+props.coin.id}>History data</NavLink></li>
+                {props.coin.market_data.market_cap['usd']!=0 && <li>Market cap: {props.coin.market_data.market_cap['usd']}$</li>}
+                {props.coin.market_data.market_cap_rank!=0 && <li>Market cap rank: {props.coin.market_data.market_cap_rank}</li>}
+                {props.coin.market_data.total_volume['usd']!=0 && <li>Total Volume: {props.coin.market_data.total_volume['usd']}$</li>}
+                {props.coin.market_data.total_supply!=0 && <li>Total Supply: {props.coin.market_data.total_supply}</li>}
+                {props.coin.market_data.max_supply!=0 && <li>Max Supply: {props.coin.market_data.max_supply}</li>}
+                {props.coin.market_data.circulating_supply!=0 && <li>Circulating Supply: {props.coin.market_data.circulating_supply}</li>}
+            </ul>
+        </div>
         <div className='ms-fontSize-18'>
             <div className='ms-fontSize-24'>Links:</div>
             <ul>
@@ -75,7 +82,9 @@ const Coin = (props) =>
                 {props.coin.links.repos_url.github[0]!=null && <li><Icon iconName="GitGraph" /> <a href={props.coin.links.repos_url.github[0]}>Github</a></li> }
             </ul>
         </div>
-        <NavLink to={'/history/'+props.coin.id}>History data</NavLink>    
+
+
+        
 
         
     </Stack>
@@ -85,17 +94,20 @@ const Coin = (props) =>
         <br />
         <div className='ms-fontSize-28'>
             Current coin price
-                <div className="ag-theme-alpine" style={{height: 700, width: 900}}>
+                <div className="ag-theme-alpine" style={{height: 700, width: 1500}}>
                     <AgGridReact
                     rowData={priceData}>
                     <AgGridColumn field="currency" headerName="Currency" sortable={ true } filter={ true }></AgGridColumn>
                     <AgGridColumn field="value" headerName="Value" sortable={ true } filter={ true }></AgGridColumn>
                     <AgGridColumn field="ath" headerName="ATH (All Time High)" sortable={ true } filter={ true }></AgGridColumn>
+                    <AgGridColumn field="athPercent" headerName="ATH Change Percentage" sortable={ true } filter={ true }></AgGridColumn>
                     <AgGridColumn field="atl"  headerName="ATH (All Time Low)" sortable={ true } filter={ true }></AgGridColumn>
+                    <AgGridColumn field="atlPercent"  headerName="ATL Change Percentage" sortable={ true } filter={ true }></AgGridColumn>
+                    <AgGridColumn field="atlDate"  headerName="ATL Date" sortable={ true } filter={ true }></AgGridColumn>
                 </AgGridReact>
             </div>
 
-
+            
         </div>    
     </Stack>
 
