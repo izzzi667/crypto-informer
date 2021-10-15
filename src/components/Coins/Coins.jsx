@@ -1,40 +1,25 @@
 import { getTheme, DefaultPalette,  Stack, FontSizes, FontWeights  } from "@fluentui/react";
 import * as React from "react";
+import { Card, CardGroup, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 
 const Coins = (props) =>{
-    const theme = getTheme();
-
-    const itemStyles = {
-        alignItems: 'center',
-        background: DefaultPalette.yellowDark,
-        color: DefaultPalette.white,
-        display: 'flex',
-        height: 50,
-        justifyContent: 'center',
-        width: 250,
-        boxShadow: theme.effects.elevation4 
-      };
-
-      const stackStyles = {
-        root: {          
-          width: '100%',
-        },
-      };
-
-      const numericalSpacingStackTokens = {
-        childrenGap: 10,
-        padding: 10,
-      };
-
     return(
-        <Stack>
-          <div style={{ fontSize: FontSizes.size68, fontWeight: FontWeights.regular }}>List of coins (total: {props.coins.length})</div>
-          <Stack horizontal wrap styles={stackStyles} tokens={numericalSpacingStackTokens}>            
-                {props.coins.map(c =><span key={c.id} style={itemStyles}><NavLink to={'/coin/'+c.id}> {c.name}</NavLink> </span>)}
-          </Stack>
-        </Stack>    
+        <Row xs={1} md={2} className="g-4">
+          <h2>List of coins (total: {props.coins.length})</h2>
+            {props.coins.map(c =><Card >
+            <Card.Header>{c.symbol}</Card.Header>
+            <Card.Body>
+              <Card.Title></Card.Title>
+              <Card.Text>
+                {c.name}<br />
+                <NavLink to={'/coin/'+c.id}>Open </NavLink>
+              </Card.Text>
+            </Card.Body>
+            </Card>
+            )}            
+        </Row>   
     )
 }
 

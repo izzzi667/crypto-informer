@@ -1,59 +1,40 @@
-import  { DefaultPalette, Stack, IStackStyles, IStackTokens, IStackItemStyles, CommandBar }  from "@fluentui/react";
 import React from "react";
-import { useHistory } from "react-router";
+import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import logo from '../../static/logo.png'
+
 
 
 const Header = () =>
 {
-      const stackItemStyles = {
-        root: {
-          padding: 5,
-          width: 300
-        },
-      };
-      const itemAlignmentsStackStyles = {
-        root: {
-          background: DefaultPalette.white,
-          height: 50,
-        },
-      };
-      
-      const itemAlignmentsStackTokens = {
-        childrenGap: 5,
-        padding: 0,
-      };
-
-      const history = useHistory();
-
-      const _items = [
-        {
-          key: 'Coins',
-          text: 'Coins',
-          iconProps: { iconName: 'Money' },
-          onClick: () => {history.push('/coins');},
-        },
-        {
-          key: 'Markets',
-          text: 'Markets',
-          iconProps: { iconName: 'Market' },
-          onClick: () => console.log('Markets'),
-        }
-
-      ];
 
 
-    return <Stack >
-                <Stack horizontal disableShrink styles={itemAlignmentsStackStyles} tokens={itemAlignmentsStackTokens}>
-                    <img src='https://via.placeholder.com/200x50' />
-                    <Stack.Item align="center" styles={stackItemStyles}>
-                      <CommandBar
-                          items={_items}
-                          ariaLabel="Inbox actions"
-
-                        />
-                    </Stack.Item>
-                </Stack>
-            </Stack>
+    return <Navbar bg="primary" variant="dark" expand="lg">
+            <Container>
+              <Navbar.Brand href="#home">      
+                <img src= {logo}  width="30" height="30"
+                className="d-inline-block align-top" alt="Logo"
+                />CRIN
+              </Navbar.Brand>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                  <Nav.Link href="/coins">Coins</Nav.Link>
+                  <Nav.Link href="/trending">Trending</Nav.Link>
+                  <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+    
+    
+    
+ 
 }
 
 export default Header;

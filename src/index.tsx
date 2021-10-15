@@ -9,6 +9,8 @@ import { initializeIcons } from '@fluentui/font-icons-mdl2';
 
 
 
+
+
 initializeIcons(); //Init fluent UI icons
 
 ReactDOM.render(
