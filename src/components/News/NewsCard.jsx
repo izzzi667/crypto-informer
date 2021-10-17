@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const NewsCard = (props) =>
 {
-    return <Col lg={12} md={12} p={12} className='shadow-sm'><Row>
+    return <Col lg={12} md={12} p={12} className='shadow-sm bg-light m-1' ><Row>
     <Col p={0} className="d-flex align-items-center"> 
         <img class="img-fluid d-block m-1" src={props.news.project.image.large} /> 
     </Col>

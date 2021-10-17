@@ -2,7 +2,6 @@ import React from "react";
 
 const DateDiff = (props) =>
 {
-    debugger;
     let today = new Date();
     let eventDay = new Date(props.date);
     let diffMs = (today-eventDay); 
