@@ -23,7 +23,15 @@ export const cryptoApi =
     {      
         return instancse.get ('coins/'+coinId+'/market_chart?vs_currency='+VScurrency+'&days='+days);
     }
+}
 
+export const newsApi = 
+{
+    getStatusUpdates(project_type ='', per_page=100, page =1)
+    {
+        let projectQuert = project_type.length!=0? `&project_type=${project_type}`:'';
+        return instancse.get(`/status_updates?page=${page}&per_page=${per_page}${projectQuert}`);
+    }
 }
 
 export default cryptoApi;

@@ -8,7 +8,7 @@ const Header = () =>
 {
 
 
-    return <Navbar bg="dark" variant="dark" expand="lg">
+    return <Navbar bg="dark" variant="dark" expand="lg"  sticky="top" >
             <Container>
               <Navbar.Brand href="#home">      
                 <img src= {logo}  width="30" height="30"
@@ -21,6 +21,7 @@ const Header = () =>
                   <Nav.Link href="/coins">Coins</Nav.Link>
                   <Nav.Link href="/coinsDetail">TOP 100</Nav.Link>
                   <Nav.Link href="/trending">Trending</Nav.Link>
+                  <Nav.Link href="/news">News</Nav.Link>
 
                 </Nav>
               </Navbar.Collapse>

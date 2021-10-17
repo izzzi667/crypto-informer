@@ -8,6 +8,7 @@ import CoinHistroyContainer from './components/Coins/Coin/CoinHistroyContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import CoinsDetailedList from './components/Coins/CoinsDetailedList';
+import News from './components/News/News';
 
 
 export const App = () => {
@@ -16,6 +17,7 @@ export const App = () => {
       <Container>  
         <Route path ='/coins' render = {()=> <CoinsContainer />} />
         <Route path ='/coinsDetail' render = {()=> <CoinsDetailedList />} />
+        <Route path ='/News' render = {()=> <News />} />
         <Route path ='/history/:coinId' render = {()=> <CoinHistroyContainer />} />
         <Route path ='/coin/:coinId' render = {()=> <CoinContainer />} />
       </Container>

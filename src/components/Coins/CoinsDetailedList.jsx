@@ -7,18 +7,18 @@ import { Col, Row} from "react-bootstrap";
 import CoinsListCard from "./CoinsListCard/CoinsListCard";
 
 
-
-
 const CoinsDetailedList = (props) =>
 {
     useEffect(() => {
         props.getCoinsDetail();        
-    }, [])
+    }, []);
+
     if(props.isLoading){
         return <Loading />
     }
+
     return <div>
-    <Row><Col><h1>Coins by market cap</h1></Col>
+    <Row><Col><h3 class="display-3">Coins by market cap</h3></Col>
 
     </Row>
 
@@ -29,8 +29,6 @@ const CoinsDetailedList = (props) =>
   </Row>
   </div>
 }
-
-
 
 
 let mapStateToProps = (state) => ({
