@@ -9,17 +9,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Alert } from 'react-bootstrap';
 import CoinsDetailedList from './components/Coins/CoinsDetailedList';
 import News from './components/News/News';
+import Global from './components/Global/Golbal';
+
 
 
 export const App = () => {
   return (<BrowserRouter>
-      <Header />
-      <Container fluid>
-        <Row>
-       
-        </Row>
-      </Container>
+      <Header />      
       <Container>  
+        <Route exact path = '/' render ={()=><Global />} />
         <Route path ='/coins' render = {()=> <CoinsContainer />} />
         <Route path ='/coinsDetail' render = {()=> <CoinsDetailedList />} />
         <Route path ='/News' render = {()=> <News />} />

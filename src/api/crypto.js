@@ -22,6 +22,10 @@ export const cryptoApi =
     getCoinHistoryData (coinId, VScurrency = 'usd', days=30)
     {      
         return instancse.get ('coins/'+coinId+'/market_chart?vs_currency='+VScurrency+'&days='+days);
+    },
+    getGlobalData ()
+    {
+        return  instancse.get('global');        
     }
 }
 
