@@ -4,6 +4,7 @@ const GET_COINS_LISTS = 'GET_COINS_LISTS';
 const GET_COINS_LISTS_DETAIL = 'GET_COINS_LISTS_DETAL';
 const COINS_LIST_LOADING_SWITH = 'COINS_LIST_LOADING_SWITH';
 const GET_GLOBAL_MARKET_DATA = 'GET_GLOBAL_MARKET_DATA ';
+const GET_TRENDING = 'GET_TRENDING';
 
 let initialState  = {
     coins: [
@@ -11,7 +12,9 @@ let initialState  = {
     ],
     coinsDetail: [],
     global: [],
-    isLoading: true
+    isLoading: true,
+    trending: [],
+    isLoadingTrending: true
 };
 
 const cryptoReducer = (state = initialState, action) =>
@@ -26,12 +29,15 @@ const cryptoReducer = (state = initialState, action) =>
             return { ...state, isLoading: action.isLoading}
         case GET_GLOBAL_MARKET_DATA:
             return {...state, global: action.global}
+        case GET_TRENDING:
+            return {...state, trending: action.trending, isLoadingTrending: false}
         default:
             return state;
     }
 }
 
 export const getAllCoins = (coins) =>({type: GET_COINS_LISTS, coins});
+export const setTrendingData = (trending) => ({type: GET_TRENDING, trending});
 export const getGlobalMarketData = (global) => ({type: GET_GLOBAL_MARKET_DATA, global});
 export const getAllCoinsDetail = (coinsDetail) =>({type: GET_COINS_LISTS_DETAIL, coinsDetail});
 export const switchLoadingCoinsList = (isLoading) =>({type: COINS_LIST_LOADING_SWITH, isLoading})
@@ -74,6 +80,18 @@ export const getGlobalData = () =>
             data=>{                
                 dispatch(getGlobalMarketData(data.data));
                 dispatch(switchLoadingCoinsList(false));
+            }
+        );
+    }
+}
+
+export const getTrendingData = () =>
+{
+    return(dispatch)=>
+    {
+        cryptoApi.getTrendingData().then(
+            data=>{                
+                dispatch(setTrendingData(data.data));
             }
         );
     }

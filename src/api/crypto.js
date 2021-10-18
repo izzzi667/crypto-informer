@@ -26,6 +26,10 @@ export const cryptoApi =
     getGlobalData ()
     {
         return  instancse.get('global');        
+    },
+    getTrendingData () 
+    {
+        return instancse.get('search/trending')
     }
 }
 
