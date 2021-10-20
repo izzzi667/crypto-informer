@@ -42,4 +42,17 @@ export const newsApi =
     }
 }
 
+export const exchangeApi = 
+{
+    getExchangeList(per_page=100, page=1)
+    {
+        return instancse.get(`exchanges?per_page=${per_page}&page=${page}`);
+    },
+    getSingleExchangeData(id)
+    {
+        return instancse.get(`exchanges/${id}`);
+    }
+
+}
+
 export default cryptoApi;

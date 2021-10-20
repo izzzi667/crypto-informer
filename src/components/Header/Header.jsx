@@ -22,6 +22,7 @@ const Header = () =>
                   <Nav.Link href="/coins">Coins</Nav.Link>
                   <Nav.Link href="/coinsDetail">TOP 100</Nav.Link>
                   <Nav.Link href="/trending">Trending</Nav.Link>
+                  <Nav.Link href="/Exchanges">Exchanges</Nav.Link>
                   <Nav.Link href="/news">News</Nav.Link>
                 </Nav>
               </Navbar.Collapse>

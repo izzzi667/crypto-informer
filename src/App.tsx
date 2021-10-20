@@ -10,6 +10,7 @@ import { Container, Row, Col, Alert } from 'react-bootstrap';
 import CoinsDetailedList from './components/Coins/CoinsDetailedList';
 import News from './components/News/News';
 import Global from './components/Global/Golbal';
+import Exchanges from './components/Exchanges/Exchanges';
 
 
 
@@ -21,6 +22,7 @@ export const App = () => {
         <Route path ='/coins' render = {()=> <CoinsContainer />} />
         <Route path ='/coinsDetail' render = {()=> <CoinsDetailedList />} />
         <Route path ='/News' render = {()=> <News />} />
+        <Route path ='/Exchanges' render = {()=> <Exchanges />} />
         <Route path ='/history/:coinId' render = {()=> <CoinHistroyContainer />} />
         <Route path ='/coin/:coinId' render = {()=> <CoinContainer />} />
       </Container>
