@@ -49,7 +49,7 @@ export const getExchangeData = (exchangeId)=>
     return (dispatch) => 
     {
         dispatch(swithcIsLoadingStatusAC(true));
-        exchangeApi.getSingleExchangeAC(exchangeId).then(
+        exchangeApi.getSingleExchangeData(exchangeId).then(
             data=>{
                 dispatch(getSingleExchangeAC(data.data));
                 dispatch(swithcIsLoadingStatusAC(false));

@@ -28,7 +28,7 @@ const Exchanges = (props) =>
         {props.exchanges.map(e=>        
         <Container>
         <div class="row my-2 shadow-lg">
-          <div class="col-md-1"><img class="img-fluid d-block m-3" src={e.image}/></div>
+          <div class="col-md-1"><NavLink to={'/Exchanges/'+e.id}><img class="img-fluid d-block m-3" src={e.image}/></NavLink></div>
           <div class="col-md-11">
             <Row>
               <div class="col-md-12">

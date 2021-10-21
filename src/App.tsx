@@ -11,6 +11,7 @@ import CoinsDetailedList from './components/Coins/CoinsDetailedList';
 import News from './components/News/News';
 import Global from './components/Global/Golbal';
 import Exchanges from './components/Exchanges/Exchanges';
+import SingleExchange from './components/Exchanges/SingleExchange/SingleExchange';
 
 
 
@@ -22,7 +23,8 @@ export const App = () => {
         <Route path ='/coins' render = {()=> <CoinsContainer />} />
         <Route path ='/coinsDetail' render = {()=> <CoinsDetailedList />} />
         <Route path ='/News' render = {()=> <News />} />
-        <Route path ='/Exchanges' render = {()=> <Exchanges />} />
+        <Route exact path ='/Exchanges' render = {()=> <Exchanges />} />
+        <Route exact path ='/Exchanges/:exchangeId' render = {()=> <SingleExchange />} />
         <Route path ='/history/:coinId' render = {()=> <CoinHistroyContainer />} />
         <Route path ='/coin/:coinId' render = {()=> <CoinContainer />} />
       </Container>

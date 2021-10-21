@@ -44,7 +44,7 @@ const Global = (props) =>
                 <Col xs lg="3">
                 <br />                
                     <ListGroup>
-                        <ListGroup.Item variant="warning">Current status</ListGroup.Item>
+                        <ListGroup.Item variant="warning"><b>Current status</b></ListGroup.Item>
                         <ListGroup.Item>Markets: {props.global.data.markets}</ListGroup.Item>
                         <ListGroup.Item>Coins: {props.global.data.active_cryptocurrencies}</ListGroup.Item>
                         <ListGroup.Item>Upcoming icos: {props.global.data.upcoming_icos}</ListGroup.Item>
@@ -53,7 +53,7 @@ const Global = (props) =>
                     </ListGroup>
                     <br />
                     <ListGroup>
-                        <ListGroup.Item variant="warning">Global value</ListGroup.Item>
+                        <ListGroup.Item variant="warning"><b>Global value</b></ListGroup.Item>
                         <ListGroup.Item>Market cap (btc): {props.global.data.total_market_cap.btc.toFixed(0)}</ListGroup.Item>
                         <ListGroup.Item>Market cap (usd): {props.global.data.total_market_cap.usd.toFixed(0)}</ListGroup.Item>
                         <ListGroup.Item>Total volume (btc): {props.global.data.total_volume.btc.toFixed(0)}</ListGroup.Item>
