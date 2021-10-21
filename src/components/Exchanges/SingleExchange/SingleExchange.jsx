@@ -4,7 +4,12 @@ import { connect } from "react-redux";
 import { getExchangeData } from "../../../redux/exchangeReducer";
 import { withRouter } from "react-router";
 import Loading from "../../Loading/Loading";
-import { Container, Row , Col, Card, Nav, Tab, Tabs,ListGroup} from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup, Badge, OverlayTrigger, Tooltip} from "react-bootstrap";
+import DatePrint from '../../Common/DatePrint'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare, faTelegramPlane, faSlackHash, faRedditSquare } from '@fortawesome/free-brands-svg-icons'
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 
 const SingleExchange = (props) =>
@@ -20,7 +25,7 @@ const SingleExchange = (props) =>
 
     return <span>
         <Row>
-            <Col>
+            <Col>    
                 <h3 class="display-3"><img src={props.exchange.image} />{props.exchange.name}</h3>
             </Col>
         </Row>
@@ -29,7 +34,7 @@ const SingleExchange = (props) =>
         <div class="col-md-3">
             <ListGroup>
                 <ListGroup.Item variant="warning"><b>Information</b></ListGroup.Item>
-                <ListGroup.Item>Est: {props.exchange.year_established}, {props.exchange.country} </ListGroup.Item>
+                <ListGroup.Item>Est: {props.exchange.year_established}</ListGroup.Item>
                 <ListGroup.Item>Country: {props.exchange.country} </ListGroup.Item>
                 <ListGroup.Item>Total Rank: {props.exchange.trust_score_rank} </ListGroup.Item>
                 <ListGroup.Item>Trust Score: {props.exchange.trust_score} </ListGroup.Item>
@@ -39,12 +44,28 @@ const SingleExchange = (props) =>
             </ListGroup>
             <br />
             <ListGroup>
-                <ListGroup.Item variant="warning"><b>Links</b></ListGroup.Item>
-                <ListGroup.Item>Website: <a href ={props.exchange.url}>{props.exchange.name}</a></ListGroup.Item>
-                <ListGroup.Item><a href={props.exchange.reddit_url}>Reddit</a></ListGroup.Item>
-                <ListGroup.Item><a href={props.exchange.slack_url}>Slack</a></ListGroup.Item>
-                <ListGroup.Item><a href={props.exchange.telegram_url}>Telegram</a></ListGroup.Item>
-                <ListGroup.Item><a href={props.exchange.facebook_url}>Facebook</a></ListGroup.Item>
+                <ListGroup.Item variant="warning">
+                    <b>Links</b></ListGroup.Item>
+                <ListGroup.Item>
+                    <FontAwesomeIcon icon={faLink} />{' '}
+                    <a href ={props.exchange.url}>{props.exchange.name} Website</a>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <FontAwesomeIcon icon={faRedditSquare} />{' '}
+                    <a href={props.exchange.reddit_url}>Reddit</a>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <FontAwesomeIcon icon={faSlackHash} />{' '}
+                    <a href={props.exchange.slack_url}>Slack</a>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <FontAwesomeIcon icon={faTelegramPlane} />{' '}
+                    <a href={props.exchange.telegram_url}>Telegram</a>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <FontAwesomeIcon icon={faFacebookSquare} />{' '}
+                    <a href={props.exchange.facebook_url}>Facebook</a>
+                </ListGroup.Item>
                 
             </ListGroup>
         </div>
@@ -52,9 +73,57 @@ const SingleExchange = (props) =>
             <Card><Card.Body>
             <Tabs defaultActiveKey="tickers">
             <Tab eventKey="tickers" title="Tickers">
+                <Table striped bordered hover size="sm">
+                    <thead>
+                        <tr>
+                        <th>Base</th>
+                        <th>Target</th>
+                        <th>Last</th>
+                        <th>Volume</th>
+                        <th>Last traded</th>
+                        <th>Status</th>
+                        <th>Trade Url</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                 {props.exchange.tickers.map(t=>
-                    <span>{t.base}<br /></span>
+                        <tr>
+                        <td><NavLink to={'/coin/'+t.coin_id}>{t.base}</NavLink></td>
+                        <td><NavLink to={'/coin/'+t.target_coin_id}>{t.target}</NavLink></td>
+                        <td><OverlayTrigger
+                            placement='right'
+                            overlay={
+                                <Tooltip>
+                                  <b>Converted:</b><br />{t.converted_last.btc} BTC<br />
+                                  {t.converted_last.eth} ETH<br />
+                                  {t.converted_last.usd} USD<br />
+                                </Tooltip>
+                              }
+                            >
+                            <span>{t.last}</span></OverlayTrigger></td>
+                        <td>
+                        <OverlayTrigger
+                            placement='right'
+                            overlay={
+                                <Tooltip>
+                                  <b>Converted:</b><br />{t.converted_volume.btc} BTC<br />
+                                  {t.converted_volume.eth} ETH<br />
+                                  {t.converted_volume.usd} USD<br />
+                                </Tooltip>
+                              }
+                            >
+                            <span>{t.volume}</span>
+                            </OverlayTrigger></td>
+                        <td><DatePrint date={t.last_traded_at}/></td>
+                        <td><Badge bg={t.trust_score=='green'?'success':'warning'}>Trust Score: {t.trust_score!=null?t.trust_score:'n/a'}</Badge>{' '}
+                            {t.is_anomaly&&<Badge bg="danger">Is Anomaly</Badge>}{' '}
+                            {t.is_stale&&<Badge bg="danger">Is Stale</Badge>}
+                        </td>
+                        <td><a href={t.trade_url}>{t.base}-{t.target}</a></td>
+                        </tr>
                     )}
+                    </tbody>
+                </Table>
             </Tab>
             <Tab eventKey="news" title="News">
                 {props.exchange.status_updates.map(s=>
