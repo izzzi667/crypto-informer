@@ -51,6 +51,10 @@ export const exchangeApi =
     getSingleExchangeData(id)
     {
         return instancse.get(`exchanges/${id}`);
+    },
+    getExchangeHistoryData(id, numberOfDays=7)
+    {
+        return instancse.get(`exchanges/${id}/volume_chart?days=${numberOfDays}`);
     }
 
 }

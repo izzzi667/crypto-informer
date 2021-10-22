@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare, faTelegramPlane, faSlackHash, faRedditSquare } from '@fortawesome/free-brands-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import DateDiff from "../../Common/DateDIff";
+import '../../../../node_modules/react-vis/dist/style.css';
+import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
 
 
 const SingleExchange = (props) =>
@@ -22,7 +24,18 @@ const SingleExchange = (props) =>
     if(props.isLoading){
         return <Loading />
     }
-    debugger;
+    const data = [
+        {x: 94, y: 8},
+        {x: 128, y: 5},
+        {x: 2, y: 4},
+        {x: 3, y: 9},
+        {x: 4, y: 1},
+        {x: 5, y: 7},
+        {x: 6, y: 6},
+        {x: 7, y: 3},
+        {x: 8, y: 2},
+        {x: 9, y: 0}
+      ];
 
     return <span>
         <Row>
@@ -141,6 +154,15 @@ const SingleExchange = (props) =>
 
 
                     )}            
+            </Tab>
+            <Tab eventKey="graph" title="Volume Chart">
+                <XYPlot height={300} width={600}>
+                    <VerticalGridLines />
+                    <HorizontalGridLines />
+                    <XAxis />
+                    <YAxis />
+                    <LineSeries color="orange" data={data} />
+                </XYPlot>
             </Tab>
             </Tabs>      
             </Card.Body></Card>
