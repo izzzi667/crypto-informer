@@ -10,6 +10,7 @@ import DatePrint from '../../Common/DatePrint'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare, faTelegramPlane, faSlackHash, faRedditSquare } from '@fortawesome/free-brands-svg-icons'
 import { faLink } from '@fortawesome/free-solid-svg-icons';
+import DateDiff from "../../Common/DateDIff";
 
 
 const SingleExchange = (props) =>
@@ -73,7 +74,7 @@ const SingleExchange = (props) =>
             <Card><Card.Body>
             <Tabs defaultActiveKey="tickers">
             <Tab eventKey="tickers" title="Tickers">
-                <Table striped bordered hover size="sm">
+                <Table striped bordered hover size="sm"  responsive >
                     <thead>
                         <tr>
                         <th>Base</th>
@@ -127,8 +128,20 @@ const SingleExchange = (props) =>
             </Tab>
             <Tab eventKey="news" title="News">
                 {props.exchange.status_updates.map(s=>
-                    <span>{s.description}<br /></span>
-                    )}            </Tab>
+                        <Col lg={12} md={12} p={12} className='shadow-sm bg-light m-2' ><Row>
+                        <Col>
+                          <p class="lead mb-1 mt-2"> <b>{s.user} </b> </p>
+                          <p><small>{s.user_title}</small></p>
+                          <p class="mb-0">{s.description}</p>
+                          <p><small><DateDiff date={s.created_at} /> ago #{s.category}</small></p>
+                        </Col>
+                      </Row> 
+                      </Col>  
+
+
+
+                    )}            
+            </Tab>
             </Tabs>      
             </Card.Body></Card>
         </div>
