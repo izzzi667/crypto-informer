@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { getExchangeData } from "../../../redux/exchangeReducer";
+import { getExchangeData, getHistoryExchangeData } from "../../../redux/exchangeReducer";
 import { withRouter } from "react-router";
 import Loading from "../../Loading/Loading";
 import { NavLink } from "react-router-dom";
@@ -12,30 +12,26 @@ import { faFacebookSquare, faTelegramPlane, faSlackHash, faRedditSquare } from '
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import DateDiff from "../../Common/DateDIff";
 import '../../../../node_modules/react-vis/dist/style.css';
-import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
+import {MarkSeries, XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
 
 
 const SingleExchange = (props) =>
 {
     useEffect(()=>{
         props.getExchangeData(props.match.params.exchangeId);
+        props.getHistoryExchangeData(props.match.params.exchangeId, props.numberOfDays);
     },[]);
+
 
     if(props.isLoading){
         return <Loading />
     }
-    const data = [
-        {x: 94, y: 8},
-        {x: 128, y: 5},
-        {x: 2, y: 4},
-        {x: 3, y: 9},
-        {x: 4, y: 1},
-        {x: 5, y: 7},
-        {x: 6, y: 6},
-        {x: 7, y: 3},
-        {x: 8, y: 2},
-        {x: 9, y: 0}
-      ];
+
+
+      let data=[];
+      props.hsitoryExchange.map(h=>{data.push({x: h[0], y: Math.round(h[1])})})
+
+      debugger;
 
     return <span>
         <Row>
@@ -156,13 +152,26 @@ const SingleExchange = (props) =>
                     )}            
             </Tab>
             <Tab eventKey="graph" title="Volume Chart">
-                <XYPlot height={300} width={600}>
+                <XYPlot height={600} width={600} margin={{
+    bottom: 80, left: 100}}>
+    
                     <VerticalGridLines />
                     <HorizontalGridLines />
-                    <XAxis />
-                    <YAxis />
+                    <XAxis
+                        attr="x"
+                        attrAxis="y"
+                        orientation="bottom"
+                        tickFormat={function tickFormat(d){return new Date(d).toLocaleDateString()}}
+                        tickLabelAngle={-90}
+                    />
+                    <YAxis 
+                        attr="y"
+                        attrAxis="x"
+                        orientation="left"
+                    />
                     <LineSeries color="orange" data={data} />
                 </XYPlot>
+                <br /><br /><br />
             </Tab>
             </Tabs>      
             </Card.Body></Card>
@@ -174,7 +183,9 @@ const SingleExchange = (props) =>
 
 let mapStateToProps = (state) => ({
     exchange: state.exchange.singleExchgnage,
-    isLoading: state.exchange.isLoading
+    isLoading: state.exchange.isLoading,
+    hsitoryExchange: state.exchange.historyExchangeData,
+    numberOfDays: state.exchange.numberOfDays
 });
 
-export default  compose(withRouter,connect(mapStateToProps, {getExchangeData}))(SingleExchange);
+export default  compose(withRouter,connect(mapStateToProps, {getExchangeData, getHistoryExchangeData}))(SingleExchange);
