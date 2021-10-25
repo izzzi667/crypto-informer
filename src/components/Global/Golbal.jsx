@@ -21,9 +21,7 @@ const Global = (props) =>
     debugger;
 
     return <span>
-            <Row>
-                <Col><h3 class="display-3">CRIN - Cryptocurrency informer</h3></Col>
-            </Row>            
+       
             <Row>                
                 <Col>
                 <Row><Col><br /><h5 class="display-5">TOP7 Trending Coins:</h5></Col></Row>

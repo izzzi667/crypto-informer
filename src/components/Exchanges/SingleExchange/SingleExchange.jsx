@@ -12,7 +12,7 @@ import { faFacebookSquare, faTelegramPlane, faSlackHash, faRedditSquare } from '
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import DateDiff from "../../Common/DateDIff";
 import '../../../../node_modules/react-vis/dist/style.css';
-import {MarkSeries, XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
+import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
 
 
 const SingleExchange = (props) =>
@@ -23,7 +23,7 @@ const SingleExchange = (props) =>
     },[]);
 
 
-    if(props.isLoading){
+    if(props.isLoading || props.isLoadingHistory){
         return <Loading />
     }
 
@@ -184,6 +184,7 @@ const SingleExchange = (props) =>
 let mapStateToProps = (state) => ({
     exchange: state.exchange.singleExchgnage,
     isLoading: state.exchange.isLoading,
+    isLoadingHistory: state.exchange.isLoadingHistory,
     hsitoryExchange: state.exchange.historyExchangeData,
     numberOfDays: state.exchange.numberOfDays
 });
