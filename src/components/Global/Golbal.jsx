@@ -30,10 +30,10 @@ const Global = (props) =>
                     {props.trending.coins.map(t=>
                     <Row className='shadow-sm bg-light m-1'>
                         <Col className="col-1 m-1">
-                            <NavLink to={'/coin/'+t.item.id}><Image src={t.item.small} /></NavLink>
+                            <NavLink to={'/coins/'+t.item.id}><Image src={t.item.small} /></NavLink>
                         </Col>
                         <Col >
-                            <NavLink to={'/coin/'+t.item.id}>{t.item.name} ({t.item.symbol})</NavLink>
+                            <NavLink to={'/coins/'+t.item.id}>{t.item.name} ({t.item.symbol})</NavLink>
                         </Col>
                         <Col >Rank: {t.item.market_cap_rank}</Col>
                         <Col >Price: {t.item.price_btc} BTC</Col>

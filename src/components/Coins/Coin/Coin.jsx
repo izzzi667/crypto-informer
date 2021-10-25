@@ -59,7 +59,7 @@ const Coin = (props) =>
         <br />
         <ListGroup>
                 <ListGroup.Item variant="warning"><b>Financial performance</b></ListGroup.Item>
-                <ListGroup.Item><NavLink to={'/history/'+props.coin.id}>History data</NavLink></ListGroup.Item>
+                <ListGroup.Item><NavLink to={`/coins/${props.coin.id}/history`}>History data</NavLink></ListGroup.Item>
                 {props.coin.market_data.market_cap['usd']!=0 && <ListGroup.Item>Market cap: {props.coin.market_data.market_cap['usd']}$ </ListGroup.Item>}
                 {props.coin.market_data.market_cap_rank!=0 && <ListGroup.Item>Market cap rank: {props.coin.market_data.market_cap_rank} </ListGroup.Item>}
                 {props.coin.market_data.total_volume['usd']!=0 && <ListGroup.Item>Total Volume: {props.coin.market_data.total_volume['usd']}$ </ListGroup.Item>}

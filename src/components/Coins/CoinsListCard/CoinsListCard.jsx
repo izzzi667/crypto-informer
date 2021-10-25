@@ -13,7 +13,7 @@ const CoinsListCard = (props) =>
                 <Card.Body>
                     <Card.Title>{props.coinInfo.name}</Card.Title>
                     <Card.Text><small>Market cap rank: {props.coinInfo.market_cap_rank}</small></Card.Text>
-                    <Card.Link href={'/coin/'+props.coinInfo.id}>Open {props.coinInfo.symbol.toUpperCase()} page</Card.Link>
+                    <Card.Link href={'/coins/'+props.coinInfo.id}>Open {props.coinInfo.symbol.toUpperCase()} page</Card.Link>
                 </Card.Body>
                 <ListGroup variant="flush">
                     <ListGroup.Item variant={varianValue}>Price: {props.coinInfo.current_price}$ {props.coinInfo.price_change_24h>0?<Icon iconName="TriangleSolidUp12" />:<Icon iconName="TriangleSolidDown12" />}</ListGroup.Item>

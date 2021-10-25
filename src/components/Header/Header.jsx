@@ -14,16 +14,15 @@ const Header = () =>
               <Navbar.Brand href="/">      
                 <img src= {logo}  width="30" height="30"
                 className="d-inline-block align-top" alt="Logo"
-                />CRIN
+                />CRIN - Crypto Informer
               </Navbar.Brand>
+              
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                  <Nav.Link href="/coins">Coins</Nav.Link>
-                  <Nav.Link href="/coinsDetail">TOP 100</Nav.Link>
-                  <Nav.Link href="/trending">Trending</Nav.Link>
-                  <Nav.Link href="/Exchanges">Exchanges</Nav.Link>
                   <Nav.Link href="/news">News</Nav.Link>
+                  <Nav.Link href="/coinsDetail">Coins</Nav.Link>
+                  <Nav.Link href="/Exchanges">Exchanges</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Container>

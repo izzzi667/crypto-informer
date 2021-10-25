@@ -98,8 +98,8 @@ const SingleExchange = (props) =>
                     <tbody>
                 {props.exchange.tickers.map(t=>
                         <tr>
-                        <td><NavLink to={'/coin/'+t.coin_id}>{t.base}</NavLink></td>
-                        <td><NavLink to={'/coin/'+t.target_coin_id}>{t.target}</NavLink></td>
+                        <td><NavLink to={'/coins/'+t.coin_id}>{t.base}</NavLink></td>
+                        <td><NavLink to={'/coins/'+t.target_coin_id}>{t.target}</NavLink></td>
                         <td><OverlayTrigger
                             placement='right'
                             overlay={

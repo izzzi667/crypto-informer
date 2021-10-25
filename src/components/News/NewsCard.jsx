@@ -14,7 +14,7 @@ const NewsCard = (props) =>
       <p><small>{props.news.user_title}</small></p>
       <p class="mb-0">{props.news.description}</p>
       <p><small><DateDiff date={props.news.created_at} /> ago #{props.news.project.type} #{props.news.project.type=='Coin'?
-      <NavLink to={'/coin/'+props.news.project.id}>{props.news.project.name}</NavLink>
+      <NavLink to={'/coins/'+props.news.project.id}>{props.news.project.name}</NavLink>
       :
       props.news.project.name
       }</small></p>

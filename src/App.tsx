@@ -20,13 +20,12 @@ export const App = () => {
       <Header />      
       <Container>  
         <Route exact path = '/' render ={()=><Global />} />
-        <Route path ='/coins' render = {()=> <CoinsContainer />} />
-        <Route path ='/coinsDetail' render = {()=> <CoinsDetailedList />} />
+        <Route exact path ='/coinsDetail' render = {()=> <CoinsDetailedList />} />
         <Route path ='/News' render = {()=> <News />} />
         <Route exact path ='/Exchanges' render = {()=> <Exchanges />} />
         <Route exact path ='/Exchanges/:exchangeId' render = {()=> <SingleExchange />} />
-        <Route path ='/history/:coinId' render = {()=> <CoinHistroyContainer />} />
-        <Route path ='/coin/:coinId' render = {()=> <CoinContainer />} />
+        <Route exact path ='/coins/:coinId/history' render = {()=> <CoinHistroyContainer />} />
+        <Route exact path ='/coins/:coinId' render = {()=> <CoinContainer />} />
       </Container>
       
     </BrowserRouter>
