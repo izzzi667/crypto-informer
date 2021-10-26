@@ -31,7 +31,6 @@ const SingleExchange = (props) =>
       let data=[];
       props.hsitoryExchange.map(h=>{data.push({x: h[0], y: Math.round(h[1])})})
 
-      debugger;
 
     return <span>
         <Row>

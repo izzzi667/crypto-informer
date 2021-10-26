@@ -14,7 +14,7 @@ const coinShortDataReducer = (state = initialState, action) =>
     switch(action.type)
     {
         case GET_COINS_SHORT_DATA:
-            return {...state, coinsShortData: action.coins, isLoaded:true};
+            return {...state, coinsShortData: [...state.coinsShortData, {data: action.coins, time: Date.now() }], isLoaded:true};
         default:
             return state;
         

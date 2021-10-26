@@ -13,7 +13,6 @@ const CoinsShortData = (props) =>
 
     useEffect(() => {  
         props.getCoinsShort();  
-        console.log(timerEvent);
         const timerId = setInterval(()=>{
             updateTimerEvent(timerEvent+1); 
         },30000);
@@ -21,12 +20,11 @@ const CoinsShortData = (props) =>
     }, [timerEvent]);
 
 
-
-    if(!props.isLoaded) return false
+    if(!props.isLoaded) return false;
 
     return <Navbar bg="warning"  expand="lg"  sticky="top" >
         <Container>
-            {props.coinsShortData.map(c=>
+            {props.coinsShortData[props.coinsShortData.length - 1].data.map(c=>
                 <span>
                     <b>{c.symbol}: </b> 
                     {c.current_price} 

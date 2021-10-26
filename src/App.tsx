@@ -12,6 +12,7 @@ import News from './components/News/News';
 import Global from './components/Global/Golbal';
 import Exchanges from './components/Exchanges/Exchanges';
 import SingleExchange from './components/Exchanges/SingleExchange/SingleExchange';
+import RealTimeGraph from './components/RealTimeGraph/RealTimeGraph';
 
 
 
@@ -26,8 +27,8 @@ export const App = () => {
         <Route exact path ='/Exchanges/:exchangeId' render = {()=> <SingleExchange />} />
         <Route exact path ='/coins/:coinId/history' render = {()=> <CoinHistroyContainer />} />
         <Route exact path ='/coins/:coinId' render = {()=> <CoinContainer />} />
-      </Container>
-      
+        <Route exact path ='/Realtime' render = {()=> <RealTimeGraph />} />
+      </Container>      
     </BrowserRouter>
   );
 };
