@@ -37,7 +37,7 @@ export const History =(props) =>
         </Stack>
         <ResponsiveContainer width="95%" height={400}>
         <LineChart data={props.graphData}>
-            <Line type="monotone" dataKey="price" stroke="#8884d8" />
+            <Line type="monotone" dataKey="price" stroke="#8884d8" dot={false} />
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="name" />
             <YAxis />
