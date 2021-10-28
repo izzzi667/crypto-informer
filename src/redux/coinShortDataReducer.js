@@ -29,7 +29,7 @@ export const getCoinsShort = () =>
 {
     return(dispatch)=>
     {
-        cryptoApi.getCoinsDetailedList('usd','5','1').then(
+        cryptoApi.getCoinsDetailedList('usd','8','1').then(
             data=>{          
                 dispatch(getCoinsShortData(data.data));
             }

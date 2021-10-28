@@ -24,7 +24,7 @@ const CoinsShortData = (props) =>
 
     return <Navbar bg="warning"  expand="lg"  sticky="top" >
         <Container>
-            {props.coinsShortData[props.coinsShortData.length - 1].data.map(c=>
+            {props.coinsShortData[props.coinsShortData.length - 1].data.slice(0, 5).map(c=>
                 <span>
                     <b>{c.symbol}: </b> 
                     {c.current_price} 

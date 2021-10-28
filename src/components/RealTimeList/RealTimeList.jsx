@@ -2,36 +2,59 @@ import React, { useEffect } from "react";
 import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup, Badge, OverlayTrigger} from "react-bootstrap";
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
+import { NavLink } from "react-router-dom";
 
 
 const RealTimeList = (props)=>
 {
     if(!props.isLoaded) return null;
 
-    /*let data =[];
-    props.coinsShortData.map(coin=>{
-        let tmpData=[];
-        coin.data.map(v=>{
-            tmpData.push({name: v, da});
-        })
-    })*/
+    let data =[];
+    for(let i=0; i<=100; i++) {data.push([]);}
 
-    debugger;
+    props.coinsShortData.map(record=>{
+        let time = record.time;        
+        record.data.map((v,index)=>{
+            data[index].push({x: time, y: v.current_price});
+        })
+    })
+
     return <span>
         <Row>
             <Col>
-                <h3 class="display-3">Сoins for view Real-time data</h3>
+                <h3 class="display-3">Real-time Price</h3>
             </Col>
         </Row>
 
         <Row>
-            {props.coinsShortData[0].data.map((c,i)=>
+            {props.coinsShortData[0].data.map((c,i)=>            
             <Col>
+            <br />
             <Card style={{ width: '18.2rem' }} bg={'light'}>
                 <Card.Body>
-                    <Card.Title>{c.name}</Card.Title>
-                    <b>{i}</b>
+                    <Card.Title>{c.name} ({c.current_price} $)</Card.Title>
+                   
+
+                    <XYPlot height={250} width={200} margin={{bottom: 10, left: 10}}>
+    
+                    <VerticalGridLines />
+                    <HorizontalGridLines />
+                    <XAxis
+                        attr="x"
+                        attrAxis="y"
+                        orientation="bottom"
+                        tickFormat={function tickFormat(d){return new Date(d).toLocaleTimeString()}}
+                        tickLabelAngle={-90}
+                    />
+                    <YAxis 
+                        attr="y"
+                        attrAxis="x"
+                        orientation="left"
+                    />
+                    <LineSeries data={data[i]}/>
+                </XYPlot>
+                <NavLink to={'/Realtime/'+i}>More</NavLink>
                 </Card.Body>
             </Card>
             </Col>)}
@@ -47,3 +70,4 @@ let mapStateToProps = (state) => ({
 })
 
 export default compose(connect(mapStateToProps,{}))(RealTimeList);
+
