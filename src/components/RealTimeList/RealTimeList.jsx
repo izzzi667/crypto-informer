@@ -28,7 +28,7 @@ const RealTimeList = (props)=>
         </Row>
 
         <Row>
-            {props.coinsShortData[0].data.map((c,i)=>            
+            {props.coinsShortData[props.coinsShortData.length-1].data.map((c,i)=>            
             <Col>
             <br />
             <Card style={{ width: '18.2rem' }} bg={'light'}>
