@@ -25,7 +25,7 @@ const CoinsShortData = (props) =>
     return <Navbar bg="warning"  expand="lg"  sticky="top" >
         <Container>
             {props.coinsShortData[props.coinsShortData.length - 1].data.slice(0, 5).map(c=>
-                <span>
+                <span key={c.symbol}>
                     <b>{c.symbol}: </b> 
                     {c.current_price} 
                     (1h: {c.price_change_percentage_1h_in_currency.toFixed(3)}%)
