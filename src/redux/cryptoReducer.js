@@ -1,6 +1,5 @@
 import { cryptoApi } from "../api/crypto";
 
-const GET_COINS_LISTS = 'GET_COINS_LISTS';
 const GET_COINS_LISTS_DETAIL = 'GET_COINS_LISTS_DETAL';
 const ADD_TO_COINS_LISTS_DETAIL = 'ADD_TO_COINS_LISTS_DETAIL';
 const COINS_LIST_LOADING_SWITH = 'COINS_LIST_LOADING_SWITH';
@@ -9,9 +8,6 @@ const GET_GLOBAL_MARKET_DATA = 'GET_GLOBAL_MARKET_DATA ';
 const GET_TRENDING = 'GET_TRENDING';
 
 let initialState  = {
-    coins: [
-        {id:null, symbol: null, name: null}
-    ],
     currentCoinsPage: 1,    
     coinsDetail: [],
     global: [],
@@ -25,8 +21,6 @@ const cryptoReducer = (state = initialState, action) =>
 {
     switch(action.type)
     {
-        case GET_COINS_LISTS:
-            return {...state, coins: action.coins};
         case GET_COINS_LISTS_DETAIL:
             return {...state, coinsDetail: action.coinsDetail};
         case ADD_TO_COINS_LISTS_DETAIL:
@@ -45,7 +39,6 @@ const cryptoReducer = (state = initialState, action) =>
     }
 }
 
-export const getAllCoins = (coins) =>({type: GET_COINS_LISTS, coins});
 export const setTrendingData = (trending) => ({type: GET_TRENDING, trending});
 export const getGlobalMarketData = (global) => ({type: GET_GLOBAL_MARKET_DATA, global});
 export const getAllCoinsDetail = (coinsDetail) =>({type: GET_COINS_LISTS_DETAIL, coinsDetail});
@@ -54,19 +47,6 @@ export const switchLoadingCoinsList = (isLoading) =>({type: COINS_LIST_LOADING_S
 export const switchLoadingCoinsDetailsList = (detailsIsLoading) =>({type: COINS_LIST_DETAILS_LOADING_SWITH, detailsIsLoading})
 
 
-export const getCoins = () =>
-{
-    return(dispatch)=>
-    {
-        dispatch(switchLoadingCoinsList(true));
-        cryptoApi.getCoinsList().then(
-            data=>{                
-                dispatch(getAllCoins(data.data));
-                dispatch(switchLoadingCoinsList(false));
-            }
-        );
-    }
-}
 
 export const getCoinsDetail = () =>
 {

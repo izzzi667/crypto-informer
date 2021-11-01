@@ -24,7 +24,7 @@ const CoinsDetailedList = (props) =>
     useEffect(()=>{      
       if(offset<1000 && !props.isLoading &&!props.detailsIsLoading ){
         let newPage =props.page+1
-        props.addCoinsDetail(newPage );
+        props.addCoinsDetail(newPage);
       }
     },[offset]);
 
