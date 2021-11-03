@@ -20,6 +20,7 @@ const RealTimeList = (props)=>
         })
     })
 
+
     return <span>
         <Row>
             <Col>
@@ -33,8 +34,9 @@ const RealTimeList = (props)=>
             <br />
             <Card style={{ width: '18.2rem' }} bg={'light'}>
                 <Card.Body>
+                    {c.price_change_percentage_1h_in_currency}
                     <Card.Title>{c.name} ({c.current_price} $)</Card.Title>
-                   
+
 
                     <XYPlot height={250} width={200} margin={{bottom: 10, left: 10}}>
     
@@ -52,7 +54,8 @@ const RealTimeList = (props)=>
                         attrAxis="x"
                         orientation="left"
                     />
-                    <LineSeries data={data[i]}/>
+                    <LineSeries data={data[i]} color = {c.price_change_percentage_1h_in_currency<0?'red':'green'}
+/>
                 </XYPlot>
                 <NavLink to={'/Realtime/'+i}>More</NavLink>
                 </Card.Body>
