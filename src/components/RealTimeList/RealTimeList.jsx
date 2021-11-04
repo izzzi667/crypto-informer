@@ -4,6 +4,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
 import { NavLink } from "react-router-dom";
+import ThrendingIcon from "../Common/ThrendingIcon";
 
 
 const RealTimeList = (props)=>
@@ -33,9 +34,8 @@ const RealTimeList = (props)=>
             <Col>
             <br />
             <Card style={{ width: '18.2rem' }} bg={'light'}>
-                <Card.Body>
-                    {c.price_change_percentage_1h_in_currency}
-                    <Card.Title>{c.name} ({c.current_price} $)</Card.Title>
+                <Card.Body>                    
+                    <Card.Title>{c.name} ({c.current_price} $)<ThrendingIcon value ={c.price_change_percentage_1h_in_currency}/></Card.Title>
 
 
                     <XYPlot height={250} width={200} margin={{bottom: 10, left: 10}}>

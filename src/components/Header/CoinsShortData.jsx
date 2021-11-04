@@ -4,6 +4,7 @@ import { connect, useStore } from "react-redux";
 import { compose } from "redux";
 import { getCoinsShort } from "../../redux/coinShortDataReducer";
 import { Icon } from "@fluentui/react";
+import ThrendingIcon from "../Common/ThrendingIcon";
 
 
 
@@ -29,7 +30,7 @@ const CoinsShortData = (props) =>
                     <b>{c.symbol}: </b> 
                     {c.current_price} 
                     (1h: {c.price_change_percentage_1h_in_currency.toFixed(3)}%)
-                    {c.price_change_percentage_1h_in_currency>0?'▲':'▼'}                    
+                    <ThrendingIcon value = {c.price_change_percentage_1h_in_currency} />                    
                 </span>
             )}
         </Container>
