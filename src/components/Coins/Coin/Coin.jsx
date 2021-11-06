@@ -7,8 +7,6 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup, Badge, OverlayTrigger, Tooltip} from "react-bootstrap";
 import DatePrint from "../../Common/DatePrint";
 
-const NUMBER_OF_RT_COINS=8;
-
 const Coin = (props) => 
 {    
     const theme = getTheme();
@@ -61,7 +59,7 @@ const Coin = (props) =>
         <ListGroup>
                 <ListGroup.Item variant="warning"><b>Financial performance</b></ListGroup.Item>
                 <ListGroup.Item><NavLink to={`/coins/${props.coin.id}/history`}>History data</NavLink></ListGroup.Item>
-                {props.coin.market_data.market_cap_rank<=NUMBER_OF_RT_COINS ? <ListGroup.Item> <NavLink to={'/Realtime/'+props.coin.market_data.market_cap_rank}>View real-time graph</NavLink></ListGroup.Item>:''}
+                {props.coin.market_data.market_cap_rank <= props.numberOfRealTimeCoins ? <ListGroup.Item> <NavLink to={'/Realtime/'+props.coin.market_data.market_cap_rank}>View real-time graph</NavLink></ListGroup.Item>:''}
                 {props.coin.market_data.market_cap['usd']!=0 && <ListGroup.Item>Market cap: {props.coin.market_data.market_cap['usd']}$ </ListGroup.Item>}
                 {props.coin.market_data.market_cap_rank!=0 && <ListGroup.Item>Market cap rank: {props.coin.market_data.market_cap_rank} </ListGroup.Item>}                
                 {props.coin.market_data.total_volume['usd']!=0 && <ListGroup.Item>Total Volume: {props.coin.market_data.total_volume['usd']}$ </ListGroup.Item>}

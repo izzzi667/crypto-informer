@@ -28,7 +28,8 @@ class CoinContainer extends React.Component
 
 let mapStateToProps = (state) =>({
     coin: state.coin.coin,
-    isLoading: state.coin.isLoading
+    isLoading: state.coin.isLoading,
+    numberOfRealTimeCoins: state.shortData.numberOfRealTimeCoins
 });
 
 export default compose(

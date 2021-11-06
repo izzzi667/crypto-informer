@@ -69,7 +69,8 @@ const RealTimeList = (props)=>
 
 let mapStateToProps = (state) => ({
     coinsShortData: state.shortData.coinsShortData,
-    isLoaded:  state.shortData.isLoaded
+    isLoaded:  state.shortData.isLoaded,
+    numberOfRealTimeCoins: state.shortData.numberOfRealTimeCoins
 })
 
 export default compose(connect(mapStateToProps,{}))(RealTimeList);

@@ -13,7 +13,7 @@ const CoinsShortData = (props) =>
     const [timerEvent, updateTimerEvent] = useState(0);
 
     useEffect(() => {  
-        props.getCoinsShort();  
+        props.getCoinsShort(props.numberOfRealTimeCoins);  
         const timerId = setInterval(()=>{
             updateTimerEvent(timerEvent+1); 
         },30000);
@@ -39,7 +39,9 @@ const CoinsShortData = (props) =>
 
 let mapStateToProps = (state) =>({
     coinsShortData: state.shortData.coinsShortData,
-    isLoaded:  state.shortData.isLoaded
+    isLoaded:  state.shortData.isLoaded,
+    numberOfRealTimeCoins: state.shortData.numberOfRealTimeCoins
+
 })
 
 

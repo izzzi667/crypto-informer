@@ -6,7 +6,8 @@ const GET_COINS_SHORT_DATA = 'GET_COINS_SHORT_DATA';
 
 let initialState  = {
     coinsShortData: [],
-    isLoaded: false
+    isLoaded: false,
+    numberOfRealTimeCoins: 16
 };
 
 const coinShortDataReducer = (state = initialState, action) =>
@@ -25,11 +26,11 @@ export const getCoinsShortData = (coins) =>({type: GET_COINS_SHORT_DATA, coins})
 
 
 
-export const getCoinsShort = () =>
+export const getCoinsShort = (numberOfCouins) =>
 {
     return(dispatch)=>
     {
-        cryptoApi.getCoinsDetailedList('usd','8','1').then(
+        cryptoApi.getCoinsDetailedList('usd',numberOfCouins,'1').then(
             data=>{          
                 dispatch(getCoinsShortData(data.data));
             }
