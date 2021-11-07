@@ -14,12 +14,8 @@ class CoinContainer extends React.Component
         this.props.getCoin(this.props.match.params.coinId);
     }
     render(){
-        if(this.props.coin.length == 0) return(null);
-        /*
-        if (this.props.isLoading)  
-        {
-            return <Loading /> 
-        }*/
+        if(this.props.coin.length == 0) return(null);        
+
         return (
             <Coin {...this.props} />
         );

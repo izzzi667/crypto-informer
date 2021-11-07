@@ -4,8 +4,9 @@ import { NavLink } from "react-router-dom";
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup, Badge, OverlayTrigger, Tooltip} from "react-bootstrap";
+import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup} from "react-bootstrap";
 import DatePrint from "../../Common/DatePrint";
+import CoinHistroyContainer from "./CoinHistroyContainer";
 
 const Coin = (props) => 
 {    
@@ -26,14 +27,12 @@ const Coin = (props) =>
         
     }
 
-    debugger;
     let stackStyle = {
         padding: 10,
         background: DefaultPalette.themeLighter,
         color: DefaultPalette.blackTranslucent40,
        
     } 
-
 
     return(<span>
         <Row>
@@ -53,12 +52,11 @@ const Coin = (props) =>
                 {props.coin.genesis_date!=null && <ListGroup.Item>Genesis date:  {props.coin.genesis_date}</ListGroup.Item>}
                 <ListGroup.Item>Coin Id: {props.coin.id} </ListGroup.Item>
                 <ListGroup.Item>Symbol: {props.coin.symbol} </ListGroup.Item>
-                <ListGroup.Item>Algorithm: {props.coin.hashing_algorithm} </ListGroup.Item>                                
+                {props.coin.hashing_algorithm && <ListGroup.Item>Algorithm: {props.coin.hashing_algorithm} </ListGroup.Item>}
         </ListGroup>
         <br />
         <ListGroup>
                 <ListGroup.Item variant="warning"><b>Financial performance</b></ListGroup.Item>
-                <ListGroup.Item><NavLink to={`/coins/${props.coin.id}/history`}>History data</NavLink></ListGroup.Item>
                 {props.coin.market_data.market_cap_rank <= props.numberOfRealTimeCoins ? <ListGroup.Item> <NavLink to={'/Realtime/'+props.coin.market_data.market_cap_rank}>View real-time graph</NavLink></ListGroup.Item>:''}
                 {props.coin.market_data.market_cap['usd']!=0 && <ListGroup.Item>Market cap: {props.coin.market_data.market_cap['usd']}$ </ListGroup.Item>}
                 {props.coin.market_data.market_cap_rank!=0 && <ListGroup.Item>Market cap rank: {props.coin.market_data.market_cap_rank} </ListGroup.Item>}                
@@ -94,34 +92,43 @@ const Coin = (props) =>
         
 
         
-    <div class="col-md-9">       
-            <Table striped bordered hover size="sm"  responsive >
-                    <thead>
-                        <tr>
-                        <th>Currency</th>
-                        <th>Value</th>
-                        <th>ATH (All Time High)</th>
-                        <th>ATH Change Percentage</th>
-                        <th>ATL (All Time Low)</th>
-                        <th>ATL Change Percentage</th>
-                        <th>ATL Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {priceData.map(p=>
+    <div class="col-md-9">
+            <Card><Card.Body>       
+            <Tabs defaultActiveKey="prices">
+            <Tab eventKey="prices" title="Prices">
+                <Table striped bordered hover size="sm"  responsive >
+                        <thead>
                             <tr>
-                                <td>{p.currency}</td>
-                                <td>{p.value}</td>
-                                <td>{p.ath}</td>
-                                <td>{p.athPercent}</td>
-                                <td>{p.atl}</td>
-                                <td>{p.atlPercent}</td>
-                                <td><DatePrint date={p.atlDate} /></td>
+                            <th>Currency</th>
+                            <th>Value</th>
+                            <th>ATH (All Time High)</th>
+                            <th>ATH Change Percentage</th>
+                            <th>ATL (All Time Low)</th>
+                            <th>ATL Change Percentage</th>
+                            <th>ATL Date</th>
                             </tr>
-                            )}
-                    </tbody>
-            </Table>
-            
+                        </thead>
+                        <tbody>
+                            {priceData.map(p=>
+                                <tr>
+                                    <td>{p.currency}</td>
+                                    <td>{p.value}</td>
+                                    <td>{p.ath}</td>
+                                    <td>{p.athPercent}</td>
+                                    <td>{p.atl}</td>
+                                    <td>{p.atlPercent}</td>
+                                    <td><DatePrint date={p.atlDate} /></td>
+                                </tr>
+                                )}
+                        </tbody>
+                </Table>
+            </Tab>    
+            <Tab eventKey="historyData" title="History Data">
+                <CoinHistroyContainer coinName={props.coin.id}/>
+                <NavLink to={`/coins/${props.coin.id}/history`}>Open in new page</NavLink>
+            </Tab>
+            </Tabs>
+            </Card.Body></Card>
     </div>
     </Row>
     </Container>

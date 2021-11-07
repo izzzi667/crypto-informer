@@ -9,27 +9,28 @@ import History from "./History";
 
 class CoiunHistoryContainer extends React.Component
 {
- 
-
+    coinName=null;
     constructor(props)
     {
         super(props);
+        if(this.props.match.params.coinId!=null) this.coinName= this.props.match.params.coinId;
+        else this.coinName = this.props.coinName;
     }
     
     componentDidMount()
     {
-        this.props.getCoinHistory(this.props.match.params.coinId, this.props.historyCurrency, this.props.numberOfDaysInHistory);
+        this.props.getCoinHistory(this.coinName, this.props.historyCurrency, this.props.numberOfDaysInHistory);
     }
     onDaysUpdate(e, value)
     {
         this.props.setNumbersOfDays(value);        
-        this.props.getCoinHistory(this.props.match.params.coinId, this.props.historyCurrency, value);        
+        this.props.getCoinHistory(this.coinName, this.props.historyCurrency, value);        
     }
     onCurrencyUpdate(e)
     {
         debugger;
         this.props.setHistoryCurrency(e.key);        
-        this.props.getCoinHistory(this.props.match.params.coinId, e.key, this.props.numberOfDaysInHistory);        
+        this.props.getCoinHistory(this.coinName, e.key, this.props.numberOfDaysInHistory);        
     }
     render() {
         //TODO: Перенести подальше
