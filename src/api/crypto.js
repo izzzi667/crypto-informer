@@ -31,7 +31,7 @@ export const cryptoApi =
 
 export const newsApi = 
 {
-    getStatusUpdates(project_type ='', per_page=100, page =1)
+    getStatusUpdates(per_page=100, page =1, project_type ='')
     {
         let projectQuert = project_type.length!=0? `&project_type=${project_type}`:'';
         return instancse.get(`/status_updates?page=${page}&per_page=${per_page}${projectQuert}`);
