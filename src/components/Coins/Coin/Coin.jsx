@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup} from "react-bootstrap";
+import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup,Badge, OverlayTrigger, Tooltip} from "react-bootstrap";
 import DatePrint from "../../Common/DatePrint";
 import CoinHistroyContainer from "./CoinHistroyContainer";
 
@@ -33,6 +33,7 @@ const Coin = (props) =>
         color: DefaultPalette.blackTranslucent40,
        
     } 
+    debugger;
 
     return(<span>
         <Row>
@@ -122,11 +123,53 @@ const Coin = (props) =>
                                 )}
                         </tbody>
                 </Table>
+            </Tab>
+            <Tab eventKey="tickers" title="Tickers">
+            <Table striped bordered hover size="sm"  responsive >
+                        <thead>
+                            <tr>
+                            <th>Base</th>
+                            <th>Target</th>
+                            <th>Status</th>
+                            <th>Last</th>
+                            <th>Market</th>
+                            <th>Url</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {props.coin.tickers.map(t=>
+                                <tr>
+                                    <td><NavLink to={'/coins/'+t.coin_id}>{t.coin_id}</NavLink></td>  
+                                    <td><NavLink to={'/coins/'+t.target_coin_id}>{t.target_coin_id}</NavLink></td>  
+                                    <td><Badge bg={t.trust_score=='green'?'success':'warning'}>Trust Score: {t.trust_score!=null?t.trust_score:'n/a'}</Badge>{' '}
+                                    {t.is_anomaly&&<Badge bg="danger">Is Anomaly</Badge>}{' '}
+                                    {t.is_stale&&<Badge bg="danger">Is Stale</Badge>}</td>
+                                    <td><OverlayTrigger
+                                    placement='right'
+                                    overlay={
+                                        <Tooltip>
+                                        <b>Converted:</b><br />{t.converted_last.btc} BTC<br />
+                                        {t.converted_last.eth} ETH<br />
+                                        {t.converted_last.usd} USD<br />
+                                        </Tooltip>
+                                    }
+                                    >
+                                    <span>{t.last}</span></OverlayTrigger></td>
+                                    <td><NavLink to={'/Exchanges/'+t.market.identifier}>{t.market.name}</NavLink></td>  
+                                    <td>{t.token_info_url&&<span><a href={t.token_info_url} target='_blank'>Tocken Info</a><br /></span>}
+                                        <a href={t.trade_url} target='_blank'>Trade Link</a>
+                                    </td>
+                                </tr>
+
+                                )}
+                        </tbody>
+                </Table>
             </Tab>    
             <Tab eventKey="historyData" title="History Data">
                 <CoinHistroyContainer coinName={props.coin.id}/>
                 <NavLink to={`/coins/${props.coin.id}/history`}>Open in new page</NavLink>
             </Tab>
+
             </Tabs>
             </Card.Body></Card>
     </div>
