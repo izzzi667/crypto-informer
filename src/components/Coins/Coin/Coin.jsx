@@ -38,8 +38,7 @@ const Coin = (props) =>
     return(<span>
         <Row>
             <Col>    
-                <h3 class="display-3">{props.coin.name}</h3>
-                <p>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</p>
+                <h3 class="display-3">{props.coin.name}</h3>                
             </Col>
         </Row>
 <Container>
@@ -95,7 +94,10 @@ const Coin = (props) =>
         
     <div class="col-md-9">
             <Card><Card.Body>       
-            <Tabs defaultActiveKey="prices">
+            <Tabs defaultActiveKey="description">
+            <Tab eventKey="description" title="Description">
+                <p>{props.coin.description.en.replace(/<\/?[^>]+(>|$)/g, "")}</p>
+            </Tab>
             <Tab eventKey="prices" title="Prices">
                 <Table striped bordered hover size="sm"  responsive >
                         <thead>
