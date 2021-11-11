@@ -13,6 +13,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import DateDiff from "../../Common/DateDIff";
 import '../../../../node_modules/react-vis/dist/style.css';
 import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';
+import TrustScoreBage from "../../Common/TrustScoreBage";
 
 
 const SingleExchange = (props) =>
@@ -124,7 +125,7 @@ const SingleExchange = (props) =>
                             <span>{t.volume}</span>
                             </OverlayTrigger></td>
                         <td><DatePrint date={t.last_traded_at}/></td>
-                        <td><Badge bg={t.trust_score=='green'?'success':'warning'}>Trust Score: {t.trust_score!=null?t.trust_score:'n/a'}</Badge>{' '}
+                        <td><TrustScoreBage score ={t.trust_score}/>{' '}
                             {t.is_anomaly&&<Badge bg="danger">Is Anomaly</Badge>}{' '}
                             {t.is_stale&&<Badge bg="danger">Is Stale</Badge>}
                         </td>
@@ -189,3 +190,4 @@ let mapStateToProps = (state) => ({
 });
 
 export default  compose(withRouter,connect(mapStateToProps, {getExchangeData, getHistoryExchangeData}))(SingleExchange);
+

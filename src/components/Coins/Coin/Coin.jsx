@@ -7,10 +7,10 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup,Badge, OverlayTrigger, Tooltip} from "react-bootstrap";
 import DatePrint from "../../Common/DatePrint";
 import CoinHistroyContainer from "./CoinHistroyContainer";
+import TrustScoreBage from "../../Common/TrustScoreBage";
 
 const Coin = (props) => 
-{    
-    const theme = getTheme();
+{        
     //TODO: перенести в селекторы
     let priceData=[];
     for (let currency in props.coin.market_data.current_price)
@@ -23,17 +23,8 @@ const Coin = (props) =>
             atlPercent: props.coin.market_data.atl_change_percentage[currency],
             atlDate: props.coin.market_data.atl_date[currency],
             atl: props.coin.market_data.atl[currency]
-        })
-        
+        })            
     }
-
-    let stackStyle = {
-        padding: 10,
-        background: DefaultPalette.themeLighter,
-        color: DefaultPalette.blackTranslucent40,
-       
-    } 
-    debugger;
 
     return(<span>
         <Row>
@@ -143,7 +134,7 @@ const Coin = (props) =>
                                 <tr>
                                     <td><NavLink to={'/coins/'+t.coin_id}>{t.coin_id}</NavLink></td>  
                                     <td><NavLink to={'/coins/'+t.target_coin_id}>{t.target_coin_id}</NavLink></td>  
-                                    <td><Badge bg={t.trust_score=='green'?'success':'warning'}>Trust Score: {t.trust_score!=null?t.trust_score:'n/a'}</Badge>{' '}
+                                    <td><TrustScoreBage score ={t.trust_score}/>{' '}
                                     {t.is_anomaly&&<Badge bg="danger">Is Anomaly</Badge>}{' '}
                                     {t.is_stale&&<Badge bg="danger">Is Stale</Badge>}</td>
                                     <td><OverlayTrigger
@@ -184,3 +175,4 @@ const Coin = (props) =>
 }
 
 export default Coin;
+
