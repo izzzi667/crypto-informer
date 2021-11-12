@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import Loading from "../Loading/Loading";
-import { Container, Row , Col, Fade} from "react-bootstrap";
+import { Container, Row , Col} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { getExchangesList } from "../../redux/exchangeReducer";
 

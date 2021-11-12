@@ -1,9 +1,6 @@
-import {FontWeights, FontSizes, getTheme, Stack, DefaultPalette, Icon} from "@fluentui/react";
+import {Icon} from "@fluentui/react";
 import React  from "react";
 import { NavLink } from "react-router-dom";
-import {AgGridColumn, AgGridReact} from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup,Badge, OverlayTrigger, Tooltip} from "react-bootstrap";
 import DatePrint from "../../Common/DatePrint";
 import CoinHistroyContainer from "./CoinHistroyContainer";

@@ -1,6 +1,6 @@
 import { Column } from "ag-grid-community";
 import React from "react";
-import { Container, Navbar, Nav, NavDropdown, Alert, Row } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import logo from '../../static/logo.png'
 import CoinsShortData from "./CoinsShortData";
 

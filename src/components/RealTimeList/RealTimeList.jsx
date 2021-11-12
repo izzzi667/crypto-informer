@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup, Badge, OverlayTrigger} from "react-bootstrap";
+import { Row , Col, Card} from "react-bootstrap";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import {XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis} from 'react-vis';

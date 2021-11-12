@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider, IStackTokens, Stack, IStackStyles, Dropdown } from '@fluentui/react';
+import { Slider, Stack, Dropdown } from '@fluentui/react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 

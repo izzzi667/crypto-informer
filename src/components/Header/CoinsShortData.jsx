@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Container, Navbar, Nav, NavDropdown, Alert, Row } from "react-bootstrap";
-import { connect, useStore } from "react-redux";
+import { Container, Navbar } from "react-bootstrap";
+import { connect } from "react-redux";
 import { compose } from "redux";
 import { getCoinsShort } from "../../redux/coinShortDataReducer";
-import { Icon } from "@fluentui/react";
 import ThrendingIcon from "../Common/ThrendingIcon";
 
 

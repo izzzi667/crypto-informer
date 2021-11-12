@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { compose } from "redux";
 import { getCoin } from "../../../redux/coinInfoReducer";
-import Loading from "../../Loading/Loading";
 import Coin from "./Coin";
 
 
