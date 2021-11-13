@@ -98,8 +98,8 @@ const SingleExchange = (props) =>
                     <tbody>
                 {props.exchange.tickers.map(t=>
                         <tr>
-                        <td><NavLink to={'/coins/'+t.coin_id}>{t.base}</NavLink></td>
-                        <td><NavLink to={'/coins/'+t.target_coin_id}>{t.target}</NavLink></td>
+                        <td>{t.coin_id!=null?<NavLink to={'/coins/'+t.coin_id}>{t.base}</NavLink>:t.base}</td>
+                        <td>{t.target_coin_id!=null?<NavLink to={'/coins/'+t.target_coin_id}>{t.target}</NavLink>:t.target}</td>
                         <td><OverlayTrigger
                             placement='right'
                             overlay={
@@ -129,7 +129,7 @@ const SingleExchange = (props) =>
                             {t.is_anomaly&&<Badge bg="danger">Is Anomaly</Badge>}{' '}
                             {t.is_stale&&<Badge bg="danger">Is Stale</Badge>}
                         </td>
-                        <td><a href={t.trade_url}>{t.base}-{t.target}</a></td>
+                        <td>{t.trade_url&&<a href={t.trade_url}>{t.base}-{t.target}</a>}</td>
                         </tr>
                     )}
                     </tbody>

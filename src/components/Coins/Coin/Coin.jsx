@@ -147,7 +147,7 @@ const Coin = (props) =>
                                     <span>{t.last}</span></OverlayTrigger></td>
                                     <td><NavLink to={'/Exchanges/'+t.market.identifier}>{t.market.name}</NavLink></td>  
                                     <td>{t.token_info_url&&<span><a href={t.token_info_url} target='_blank'>Tocken Info</a><br /></span>}
-                                        <a href={t.trade_url} target='_blank'>Trade Link</a>
+                                        {t.trade_url&&<a href={t.trade_url} target='_blank'>Trade Link</a>}
                                     </td>
                                 </tr>
 
