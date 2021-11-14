@@ -48,9 +48,7 @@ const SingleExchange = (props) =>
                 <ListGroup.Item>Country: {props.exchange.country} </ListGroup.Item>
                 <ListGroup.Item>Total Rank: {props.exchange.trust_score_rank} </ListGroup.Item>
                 <ListGroup.Item>Trust Score: {props.exchange.trust_score} </ListGroup.Item>
-                <ListGroup.Item>Trade volume 24h (btc): {props.exchange.trade_volume_24h_btc} </ListGroup.Item>
-                
-                
+                <ListGroup.Item>Trade volume 24h (btc): {props.exchange.trade_volume_24h_btc} </ListGroup.Item>                                
             </ListGroup>
             <br />
             <ListGroup>
