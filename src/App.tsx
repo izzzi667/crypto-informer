@@ -13,6 +13,7 @@ import Exchanges from './components/Exchanges/Exchanges';
 import SingleExchange from './components/Exchanges/SingleExchange/SingleExchange';
 import RealTimeGraph from './components/RealTimeGraph/RealTimeGraph';
 import RealTimeList from './components/RealTimeList/RealTimeList';
+import Footer from './components/Footer/Footer';
 
 
 
@@ -30,6 +31,7 @@ export const App = () => {
         <Route exact path ='/Realtime/:coinId' render = {()=> <RealTimeGraph />} />
         <Route exact path ='/Realtime' render = {()=> <RealTimeList />} />
       </Container>      
+      <Footer />
     </BrowserRouter>
   );
 };

@@ -1,7 +1,9 @@
-import {Icon} from "@fluentui/react";
 import React  from "react";
 import { NavLink } from "react-router-dom";
 import { Container, Row , Col, Card, Table, Tab, Tabs,ListGroup,Badge, OverlayTrigger, Tooltip} from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faRedditSquare } from '@fortawesome/free-brands-svg-icons'
+import { faLink, faExchangeAlt, faComments, faCommentDots  } from '@fortawesome/free-solid-svg-icons';
 import DatePrint from "../../Common/DatePrint";
 import CoinHistroyContainer from "./CoinHistroyContainer";
 import TrustScoreBage from "../../Common/TrustScoreBage";
@@ -22,6 +24,8 @@ const Coin = (props) =>
             atl: props.coin.market_data.atl[currency]
         })            
     }
+
+    debugger;
 
     return(<span>
         <Row>
@@ -57,25 +61,25 @@ const Coin = (props) =>
         <br />
         <ListGroup>
             <ListGroup.Item variant="warning"><b>Links</b></ListGroup.Item>
-                {props.coin.links.homepage[0]!='' && <ListGroup.Item><Icon iconName="Website" /> <a href={props.coin.links.homepage[0]}>Homepage</a></ListGroup.Item> }
-                {props.coin.links.homepage[1]!='' && <ListGroup.Item><Icon iconName="Website" /> <a href={props.coin.links.homepage[1]}>Homepage 2</a></ListGroup.Item> }
-                {props.coin.links.homepage[2]!='' && <ListGroup.Item><Icon iconName="Website" /> <a href={props.coin.links.homepage[2]}>Homepage 3</a></ListGroup.Item> }
-                {props.coin.links.blockchain_site[0]!='' && <ListGroup.Item><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[0]}>Blockchain site 1</a></ListGroup.Item> }
-                {props.coin.links.blockchain_site[1]!='' && <ListGroup.Item><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[1]}>Blockchain site 2</a></ListGroup.Item> }
-                {props.coin.links.blockchain_site[2]!='' && <ListGroup.Item><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[2]}>Blockchain site 3</a></ListGroup.Item> }
-                {props.coin.links.blockchain_site[3]!='' && <ListGroup.Item><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[3]}>Blockchain site 4</a></ListGroup.Item> }
-                {props.coin.links.blockchain_site[4]!='' && <ListGroup.Item><Icon iconName="Link12" /> <a href={props.coin.links.blockchain_site[4]}>Blockchain site 5</a></ListGroup.Item> }
-                {props.coin.links.official_forum_url[0]!='' && <ListGroup.Item><Icon iconName="TextBox" /> <a href={props.coin.links.official_forum_url[0]}>Official Forum</a></ListGroup.Item> }
-                {props.coin.links.official_forum_url[1]!='' && <ListGroup.Item><Icon iconName="TextBox" /> <a href={props.coin.links.official_forum_url[1]}>Official Forum 2</a></ListGroup.Item> }
-                {props.coin.links.official_forum_url[2]!='' && <ListGroup.Item><Icon iconName="TextBox" /> <a href={props.coin.links.official_forum_url[2]}>Official Forum 3</a></ListGroup.Item> }
-                {props.coin.links.chat_url[0]!='' && <ListGroup.Item><Icon iconName="Comment" /> <a href={props.coin.links.chat_url[0]}>Coin's chat</a></ListGroup.Item> }
-                {props.coin.links.chat_url[1]!='' && <ListGroup.Item><Icon iconName="Comment" /> <a href={props.coin.links.chat_url[1]}>Coin's chat 2</a></ListGroup.Item> }
-                {props.coin.links.chat_url[2]!='' && <ListGroup.Item><Icon iconName="Comment" /> <a href={props.coin.links.chat_url[2]}>Coin's chat 3</a></ListGroup.Item> }
-                {props.coin.links.subreddit_url!=null && <ListGroup.Item><Icon iconName="Group" /> <a href={props.coin.links.subreddit_url}>Reddit</a></ListGroup.Item> }
-                {props.coin.links.repos_url.github[0]!=null && <ListGroup.Item><Icon iconName="GitGraph" /> <a href={props.coin.links.repos_url.github[0]}>Github</a></ListGroup.Item> }
+                {props.coin.links.homepage[0]!='' && <ListGroup.Item><FontAwesomeIcon icon={faLink} /><a href={props.coin.links.homepage[0]}>Homepage</a></ListGroup.Item> }
+                {props.coin.links.homepage[1]!='' && <ListGroup.Item><FontAwesomeIcon icon={faLink} /><a href={props.coin.links.homepage[1]}>Homepage 2</a></ListGroup.Item> }
+                {props.coin.links.homepage[2]!='' && <ListGroup.Item><FontAwesomeIcon icon={faLink} /><a href={props.coin.links.homepage[2]}>Homepage 3</a></ListGroup.Item> }
+                {props.coin.links.blockchain_site[0]!='' && <ListGroup.Item><FontAwesomeIcon icon={faExchangeAlt} /> <a href={props.coin.links.blockchain_site[0]}>Blockchain site 1</a></ListGroup.Item> }
+                {props.coin.links.blockchain_site[1]!='' && <ListGroup.Item><FontAwesomeIcon icon={faExchangeAlt} /> <a href={props.coin.links.blockchain_site[1]}>Blockchain site 2</a></ListGroup.Item> }
+                {props.coin.links.blockchain_site[2]!='' && <ListGroup.Item><FontAwesomeIcon icon={faExchangeAlt} /> <a href={props.coin.links.blockchain_site[2]}>Blockchain site 3</a></ListGroup.Item> }
+                {props.coin.links.blockchain_site[3]!='' && <ListGroup.Item><FontAwesomeIcon icon={faExchangeAlt} /> <a href={props.coin.links.blockchain_site[3]}>Blockchain site 4</a></ListGroup.Item> }
+                {props.coin.links.blockchain_site[4]!='' && <ListGroup.Item><FontAwesomeIcon icon={faExchangeAlt} /> <a href={props.coin.links.blockchain_site[4]}>Blockchain site 5</a></ListGroup.Item> }
+                {props.coin.links.official_forum_url[0]!='' && <ListGroup.Item><FontAwesomeIcon icon={faComments} /> <a href={props.coin.links.official_forum_url[0]}>Official Forum</a></ListGroup.Item> }
+                {props.coin.links.official_forum_url[1]!='' && <ListGroup.Item><FontAwesomeIcon icon={faComments} /> <a href={props.coin.links.official_forum_url[1]}>Official Forum 2</a></ListGroup.Item> }
+                {props.coin.links.official_forum_url[2]!='' && <ListGroup.Item><FontAwesomeIcon icon={faComments} /> <a href={props.coin.links.official_forum_url[2]}>Official Forum 3</a></ListGroup.Item> }
+                {props.coin.links.chat_url[0]!='' && <ListGroup.Item><FontAwesomeIcon icon={faCommentDots} /> <a href={props.coin.links.chat_url[0]}>Coin's chat</a></ListGroup.Item> }
+                {props.coin.links.chat_url[1]!='' && <ListGroup.Item><FontAwesomeIcon icon={faCommentDots} /> <a href={props.coin.links.chat_url[1]}>Coin's chat 2</a></ListGroup.Item> }
+                {props.coin.links.chat_url[2]!='' && <ListGroup.Item><FontAwesomeIcon icon={faCommentDots} /><a href={props.coin.links.chat_url[2]}>Coin's chat 3</a></ListGroup.Item> }
+                {props.coin.links.subreddit_url!=null && <ListGroup.Item><FontAwesomeIcon icon={faRedditSquare} /> <a href={props.coin.links.subreddit_url}>Reddit</a></ListGroup.Item> }
+                {props.coin.links.repos_url.github[0]!=null && <ListGroup.Item><FontAwesomeIcon icon={faGithub} /> <a href={props.coin.links.repos_url.github[0]}>Github</a></ListGroup.Item> }
         </ListGroup>
         </div>
-
+        
 
         
 
