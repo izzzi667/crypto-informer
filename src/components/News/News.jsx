@@ -33,11 +33,11 @@ const News = (props) =>
     }
     
     
-    return <div class="py-5" >
+    return <div className="py-5" >
     <Container>
       <Row>
         <Col>
-          <h3 class="display-3">Last news</h3>
+          <h3 className="display-3">Last news</h3>
         </Col>
       </Row>
       <Row>
