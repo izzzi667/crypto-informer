@@ -35,6 +35,10 @@ export const newsApi =
     {
         let projectQuert = project_type.length!=0? `&project_type=${project_type}`:'';
         return instancse.get(`/status_updates?page=${page}&per_page=${per_page}${projectQuert}`);
+    },
+    getEvents()
+    {
+        return instancse.get('events');
     }
 }
 

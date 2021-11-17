@@ -14,6 +14,7 @@ import SingleExchange from './components/Exchanges/SingleExchange/SingleExchange
 import RealTimeGraph from './components/RealTimeGraph/RealTimeGraph';
 import RealTimeList from './components/RealTimeList/RealTimeList';
 import Footer from './components/Footer/Footer';
+import Events from './components/Events/Events';
 
 
 
@@ -24,6 +25,7 @@ export const App = () => {
         <Route exact path = '/' render ={()=><Global />} />
         <Route exact path ='/coinsDetail' render = {()=> <CoinsDetailedList />} />
         <Route path ='/News' render = {()=> <News />} />
+        <Route path ='/Events' render = {()=> <Events />} />
         <Route exact path ='/Exchanges' render = {()=> <Exchanges />} />
         <Route exact path ='/Exchanges/:exchangeId' render = {()=> <SingleExchange />} />
         <Route exact path ='/coins/:coinId/history' render = {()=> <CoinHistroyContainer />} />
