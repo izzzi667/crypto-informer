@@ -11,7 +11,6 @@ const Events = (props) =>
         props.getEvents();
     },[]);
 
-    debugger;
     if(props.isLoading){
         return <Loading />
     }

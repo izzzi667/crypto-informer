@@ -25,7 +25,6 @@ const Coin = (props) =>
         })            
     }
 
-    debugger;
 
     return(<span>
         <Row>

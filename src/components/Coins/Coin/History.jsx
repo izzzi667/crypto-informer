@@ -1,5 +1,7 @@
 import React from "react";
 import { Slider, Stack, Dropdown } from '@fluentui/react';
+import { Form, Row , Col} from "react-bootstrap";
+
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 
@@ -20,7 +22,10 @@ export const History =(props) =>
       };
 
 
+
     return <Stack>
+
+
         <Stack horizontal wrap={true} style={{padding: 5}}>
             <Stack style={{width: 400, minWidth:400}} verticalAlign="start">
                 <Slider label="Number of days" min={1} max={90} step={1} defaultValue={props.numberOfDaysInHistory} showValue onChanged={props.onDaysUpdate} styles={{width:300}}/>
