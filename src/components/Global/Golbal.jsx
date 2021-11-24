@@ -5,6 +5,7 @@ import { compose } from "redux";
 import { getGlobalData, getTrendingData } from "../../redux/cryptoReducer";
 import Loading from "../Loading/Loading";
 import { NavLink } from "react-router-dom";
+import {getThrending,getGlobal,getLoadingStatus} from '../../redux/cryptoSelector';
 
 
 
@@ -15,10 +16,9 @@ const Global = (props) =>
         props.getTrendingData();
     }, []);
 
-    if(props.isLoading || props.isLoadingTrending ){
+    if(props.isLoading){
         return <Loading />
     }
-    debugger;
 
     return <span>
        
@@ -69,11 +69,9 @@ const Global = (props) =>
 }
 
 let mapStateToProps = (state) => ({
-    global: state.crypto.global,
-    isLoading: state.crypto.isLoading,
-    trending: state.crypto.trending,
-    isLoadingTrending: state.crypto.isLoadingTrending
-
+    global: getGlobal(state),
+    isLoading: getLoadingStatus(state),
+    trending: getThrending(state),    
 });
 
 export default compose(connect(mapStateToProps,{getGlobalData, getTrendingData}))(Global);
